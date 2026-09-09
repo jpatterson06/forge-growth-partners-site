@@ -37,11 +37,11 @@ exports.handler = async (event) => {
       .from('leads')
       .insert({
         source: 'website',
-        lead_type: 'contact_form',
+        lead_type: 'gym_owner',
         full_name: name || null,
         email,
         phone: phone || null,
-        raw_form_data: { gym, topic, message },
+        raw_form_data: { channel: 'contact_form', gym, topic, message },
         first_touch_at: new Date().toISOString()
       })
       .select('id')
