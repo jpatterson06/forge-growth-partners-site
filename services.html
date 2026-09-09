@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Services | Forge Growth Partners — Martial Arts Gym Consulting</title>
+<style>
+  :root{--navy:#0F1B3D;--navy-deep:#0A1329;--blue:#2E7CF6;--indigo:#5B3FE0;--cyan:#3FE8E0;--slate:#8B99AE;--white:#F7F9FC;--card:#16234C;--border:rgba(255,255,255,0.08);}
+  *{box-sizing:border-box;margin:0;padding:0;}
+  body{background:var(--navy-deep);color:var(--white);font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Inter,sans-serif;line-height:1.5;}
+  a{color:inherit;text-decoration:none;}
+  .wrap{max-width:1160px;margin:0 auto;padding:0 24px;}
+  header{position:sticky;top:0;z-index:50;background:rgba(10,19,41,0.85);backdrop-filter:blur(10px);border-bottom:1px solid var(--border);}
+  nav{display:flex;align-items:center;justify-content:space-between;padding:16px 24px;max-width:1160px;margin:0 auto;}
+  .brand{display:flex;align-items:center;gap:10px;font-weight:700;font-size:18px;letter-spacing:-0.02em;}
+  .brand-mark{width:34px;height:34px;border-radius:9px;background:linear-gradient(135deg,var(--blue),var(--indigo));display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:800;}
+  .navlinks{display:flex;gap:32px;font-size:14px;color:var(--slate);}
+  .navlinks a:hover{color:var(--white);}
+  .nav-cta{background:linear-gradient(135deg,var(--blue),var(--indigo));padding:10px 18px;border-radius:8px;font-size:14px;font-weight:600;}
+  .page-head{text-align:center;padding:80px 0 20px;}
+  .eyebrow{color:var(--cyan);font-size:13px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;margin-bottom:16px;}
+  h1{font-size:clamp(30px,4.5vw,46px);font-weight:800;letter-spacing:-0.03em;max-width:700px;margin:0 auto 16px;}
+  .lede{color:var(--slate);font-size:17px;max-width:640px;margin:0 auto 40px;}
+  .start-here{display:flex;align-items:center;justify-content:space-between;gap:20px;background:linear-gradient(135deg,rgba(46,124,246,0.12),rgba(91,63,224,0.12));border:1px solid rgba(63,232,224,0.25);border-radius:16px;padding:24px 30px;margin-bottom:60px;flex-wrap:wrap;}
+  .start-here .label{color:var(--cyan);font-size:12px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;margin-bottom:4px;}
+  .start-here h3{font-size:18px;margin-bottom:4px;}
+  .start-here p{color:var(--slate);font-size:14px;}
+  .btn-primary{background:linear-gradient(135deg,var(--blue),var(--indigo));padding:13px 24px;border-radius:10px;font-weight:700;font-size:14px;white-space:nowrap;}
+  .service{display:grid;grid-template-columns:1fr 260px;gap:40px;background:var(--card);border:1px solid var(--border);border-radius:20px;padding:36px;margin-bottom:28px;align-items:start;}
+  .service-num{color:var(--blue);font-weight:800;font-size:13px;letter-spacing:0.08em;margin-bottom:10px;}
+  .service h2{font-size:24px;font-weight:800;margin-bottom:14px;letter-spacing:-0.01em;}
+  .service p.desc{color:var(--slate);font-size:15px;margin-bottom:18px;}
+  .service ul{list-style:none;display:flex;flex-direction:column;gap:9px;}
+  .service ul li{font-size:14px;padding-left:18px;position:relative;}
+  .service ul li::before{content:"✓";color:var(--cyan);font-weight:800;position:absolute;left:0;}
+  .stats-col{display:flex;flex-direction:column;gap:16px;}
+  .stat-box{background:var(--navy-deep);border:1px solid var(--border);border-radius:12px;padding:14px 16px;}
+  .stat-box .num{font-size:22px;font-weight:800;color:var(--cyan);}
+  .stat-box .lbl{font-size:12px;color:var(--slate);margin-top:2px;}
+  .jfive-callout{display:flex;align-items:center;gap:16px;background:linear-gradient(135deg,rgba(46,124,246,0.14),rgba(91,63,224,0.14));border:1px solid rgba(63,232,224,0.25);border-radius:14px;padding:18px 22px;margin-top:22px;}
+  .jfive-callout img{width:42px;height:42px;border-radius:10px;flex-shrink:0;}
+  .jfive-callout .jname{font-weight:800;font-size:15px;}
+  .jfive-callout .jname .j{color:var(--blue);}
+  .jfive-callout p{margin:2px 0 0;font-size:13px;color:var(--slate);}
+  .jfive-callout a{color:var(--cyan);font-weight:700;font-size:13px;white-space:nowrap;margin-left:auto;}
+  .section-head{text-align:center;margin:80px 0 44px;}
+  .section-head h2{font-size:32px;font-weight:800;letter-spacing:-0.02em;}
+  .howworks{display:grid;grid-template-columns:repeat(5,1fr);gap:16px;margin-bottom:90px;}
+  .hw-step{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:20px;text-align:center;}
+  .hw-num{width:32px;height:32px;border-radius:50%;background:linear-gradient(135deg,var(--blue),var(--indigo));display:flex;align-items:center;justify-content:center;font-weight:800;font-size:14px;margin:0 auto 12px;}
+  .hw-step h4{font-size:14px;margin-bottom:6px;}
+  .hw-step p{font-size:12.5px;color:var(--slate);}
+  .final-cta{background:linear-gradient(135deg,var(--blue),var(--indigo));border-radius:24px;padding:50px;text-align:center;margin-bottom:90px;}
+  .final-cta h2{font-size:26px;font-weight:800;margin-bottom:10px;}
+  .final-cta p{margin-bottom:22px;opacity:0.9;font-size:14px;}
+  .final-cta .btn-primary{background:var(--navy-deep);}
+  footer{border-top:1px solid var(--border);padding:40px 0;color:var(--slate);font-size:13px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:16px;}
+  footer .footlinks{display:flex;gap:24px;}
+  @media (max-width:860px){.service{grid-template-columns:1fr;}.howworks{grid-template-columns:repeat(2,1fr);}.navlinks{display:none;}.start-here{flex-direction:column;align-items:flex-start;}}
+</style>
+<script src="/assets/attribution.js"></script>
+</head>
+<body>
+<header><nav>
+  <div class="brand"><div class="brand-mark">FGP</div>FORGE Growth Partners</div>
+  <div class="navlinks"><a href="services.html">Services</a><a href="about.html">About</a><a href="resources.html">Resources</a><a href="contact.html">Contact</a></div>
+  <a href="gym-analysis.html" class="nav-cta">AI Gym Health Score™ — Free</a>
+</nav></header>
+
+<div class="wrap">
+  <div class="page-head">
+    <div class="eyebrow">What We Do</div>
+    <h1>Every service, built for martial arts gyms.</h1>
+    <p class="lede">We've worked with dozens of successful academies. These aren't generic consulting packages — they're systems built from real gym experience.</p>
+  </div>
+
+  <div class="start-here">
+    <div><div class="label">Start Here</div><h3>Not sure where to begin? Get your AI Gym Health Score™</h3><p>Our AI identifies your highest-impact opportunities in 60 seconds — free.</p></div>
+    <a href="gym-analysis.html" class="btn-primary">Get My Free AI Score →</a>
+  </div>
+
+  <div class="service">
+    <div>
+      <div class="service-num">SERVICE 01</div>
+      <h2>AI &amp; Automation Systems</h2>
+      <p class="desc">Your gym is losing leads and revenue to slow response times and manual processes. Our team builds and deploys AI-powered automation — powered by JFIVE — that runs 24/7, so you can focus on coaching, not chasing down payments.</p>
+      <ul>
+        <li>Automated lead follow-up — text and email sequences that start within 5 minutes</li>
+        <li>Billing recovery automation — recaptures 70%+ of failed payments without awkward calls</li>
+        <li>Review generation system — puts your Google ratings on autopilot</li>
+        <li>Class reminder and retention nudge sequences</li>
+        <li>Custom AI integrations with your existing gym management software</li>
+      </ul>
+      <div class="jfive-callout">
+        <img src="assets/jfive-logo.png" alt="JFIVE logo">
+        <div><div class="jname"><span class="j">J</span>FIVE — AI Practice Management</div><p>This entire service runs on JFIVE, our proprietary AI system built for martial arts gyms.</p></div>
+        <a href="index.html#jfive">Learn more →</a>
+      </div>
+    </div>
+    <div class="stats-col">
+      <div class="stat-box"><div class="num">9x</div><div class="lbl">Lead response time improvement</div></div>
+      <div class="stat-box"><div class="num">70%+</div><div class="lbl">Failed billing recovery rate</div></div>
+      <div class="stat-box"><div class="num">10–14hrs</div><div class="lbl">Admin hours reclaimed per week</div></div>
+      <div class="stat-box"><div class="num">20+</div><div class="lbl">New Google reviews per month</div></div>
+    </div>
+  </div>
+
+  <div class="service">
+    <div>
+      <div class="service-num">SERVICE 02</div>
+      <h2>Member Retention Systems</h2>
+      <p class="desc">Most gyms lose 5–10% of their members every month. Eighty percent of that churn is preventable with the right systems in place. We build structured onboarding, attendance monitoring, and win-back sequences that keep students engaged through month 12 and beyond.</p>
+      <ul>
+        <li>30/60/90-day new member onboarding sequence</li>
+        <li>Attendance monitoring with automated intervention triggers</li>
+        <li>Win-back campaigns for lapsed students</li>
+        <li>Milestone celebration and belt progression communications</li>
+        <li>Family engagement system for kids program retention</li>
+      </ul>
+    </div>
+    <div class="stats-col">
+      <div class="stat-box"><div class="num">80%</div><div class="lbl">Preventable churn rate</div></div>
+      <div class="stat-box"><div class="num">5x cheaper</div><div class="lbl">Retention cost vs. new acquisition</div></div>
+      <div class="stat-box"><div class="num">40%</div><div class="lbl">First-year churn reduction (with system)</div></div>
+    </div>
+  </div>
+
+  <div class="service">
+    <div>
+      <div class="service-num">SERVICE 03</div>
+      <h2>Growth Strategy &amp; Marketing</h2>
+      <p class="desc">Referral programs, local SEO, Google Business Profile optimization, social media strategy, and paid advertising — all dialed in to your specific market, competition, and budget. We build growth systems that compound over time, not one-off campaigns.</p>
+      <ul>
+        <li>Referral program design and implementation</li>
+        <li>Google Business Profile optimization and management</li>
+        <li>Local SEO strategy — rank for the searches that matter</li>
+        <li>Social media content systems (not just posting — a real strategy)</li>
+        <li>Paid ad strategy for trials and program launches</li>
+      </ul>
+    </div>
+    <div class="stats-col">
+      <div class="stat-box"><div class="num">+12–20</div><div class="lbl">Additional monthly trials from referral system</div></div>
+      <div class="stat-box"><div class="num">3x</div><div class="lbl">GBP review velocity increase</div></div>
+      <div class="stat-box"><div class="num">$0</div><div class="lbl">Average cost per trial (organic)</div></div>
+    </div>
+  </div>
+
+  <div class="service">
+    <div>
+      <div class="service-num">SERVICE 04</div>
+      <h2>Curriculum &amp; Team Development</h2>
+      <p class="desc">The gyms that break through 200 members all have one thing in common: a team that can carry the culture without the owner in every room. We build the curriculum frameworks, instructor development programs, and career path systems that make that possible.</p>
+      <ul>
+        <li>Adult BJJ curriculum: 12-week cycles, fundamentals tracks, technique libraries</li>
+        <li>Kids curriculum: Cubs, Youth, and Teen program architecture</li>
+        <li>Instructor development — teaching methodology and ongoing feedback systems</li>
+        <li>Career path framework: 5 defined tiers, compensation models, promotion criteria</li>
+        <li>Belt promotion standards and testing protocols</li>
+      </ul>
+    </div>
+    <div class="stats-col">
+      <div class="stat-box"><div class="num">35%</div><div class="lbl">Student retention improvement (structured curriculum)</div></div>
+      <div class="stat-box"><div class="num">50%+</div><div class="lbl">Instructor turnover reduction</div></div>
+      <div class="stat-box"><div class="num">+30%</div><div class="lbl">Kids program revenue contribution</div></div>
+    </div>
+  </div>
+
+  <div class="service">
+    <div>
+      <div class="service-num">SERVICE 05</div>
+      <h2>Operational Systems</h2>
+      <p class="desc">If your gym depends entirely on you showing up every day, you don't own a business — you own a job. We build the SOPs, scheduling frameworks, billing infrastructure, and management systems that let your gym run like an actual business.</p>
+      <ul>
+        <li>SOP documentation for all core gym operations</li>
+        <li>Staff scheduling and class management frameworks</li>
+        <li>Financial reporting and billing infrastructure setup</li>
+        <li>New staff onboarding systems</li>
+        <li>Owner bandwidth audit — where your time is being wasted</li>
+      </ul>
+    </div>
+    <div class="stats-col">
+      <div class="stat-box"><div class="num">10–20hrs</div><div class="lbl">Owner hours reclaimed per week</div></div>
+      <div class="stat-box"><div class="num">$800–2k/mo</div><div class="lbl">Billing gap recovery (first 90 days)</div></div>
+      <div class="stat-box"><div class="num">60%</div><div class="lbl">Staff onboarding time reduction</div></div>
+    </div>
+  </div>
+
+  <div class="service">
+    <div>
+      <div class="service-num">SERVICE 06</div>
+      <h2>Ongoing Consulting &amp; Strategic Partnership</h2>
+      <p class="desc">For gyms that want a long-term partner in the room — not just a one-time engagement. Monthly check-ins, quarterly planning sessions, priority access to our team, and ongoing optimization as your gym grows.</p>
+      <ul>
+        <li>Monthly strategy sessions with your dedicated consultant</li>
+        <li>Priority access to our AI and automation team</li>
+        <li>Quarterly growth reviews with actionable next-quarter targets</li>
+        <li>Ad-hoc support for decisions, pricing, staff issues, and growth moves</li>
+        <li>First access to new tools and automation as we build them</li>
+      </ul>
+    </div>
+    <div class="stats-col">
+      <div class="stat-box"><div class="num">30–50%</div><div class="lbl">Average partner gym growth (Year 1)</div></div>
+      <div class="stat-box"><div class="num">Priority</div><div class="lbl">Ongoing support access</div></div>
+      <div class="stat-box"><div class="num">None</div><div class="lbl">Contract required</div></div>
+    </div>
+  </div>
+
+  <div class="section-head">
+    <div class="eyebrow" style="text-align:center;">How It Works</div>
+    <h2>From your first score to a running system.</h2>
+  </div>
+  <div class="howworks">
+    <div class="hw-step"><div class="hw-num">1</div><h4>Free AI Score</h4><p>Get your AI Gym Health Score™ — benchmarked, prioritized, no obligation.</p></div>
+    <div class="hw-step"><div class="hw-num">2</div><h4>Strategy Call</h4><p>Walk through your score with a consultant. Real conversation, no pitch.</p></div>
+    <div class="hw-step"><div class="hw-num">3</div><h4>Custom Plan</h4><p>We scope a plan specific to your gym, stage, and goals.</p></div>
+    <div class="hw-step"><div class="hw-num">4</div><h4>Build &amp; Launch</h4><p>Our team builds and deploys — you stay focused on your mat.</p></div>
+    <div class="hw-step"><div class="hw-num">5</div><h4>Ongoing Support</h4><p>We monitor, optimize, and grow with you as your gym scales.</p></div>
+  </div>
+
+  <div class="final-cta">
+    <h2>Start with your free AI Gym Health Score™</h2>
+    <p>Know what to fix first. 60 seconds. No credit card.</p>
+    <a href="gym-analysis.html" class="btn-primary">Get My Free AI Score →</a>
+  </div>
+
+  <footer>
+    <div>© 2026 Forge Growth Partners</div>
+    <div class="footlinks"><a href="/">Home</a><a href="about.html">About</a><a href="contact.html">Contact</a><a href="gym-analysis.html">AI Score</a></div>
+  </footer>
+</div>
+</body>
+</html>

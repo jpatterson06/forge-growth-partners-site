@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Forge Growth Partners — AI &amp; Business Consulting for Martial Arts Gyms</title>
+<style>
+  :root{--navy:#0F1B3D;--navy-deep:#0A1329;--blue:#2E7CF6;--indigo:#5B3FE0;--cyan:#3FE8E0;--slate:#8B99AE;--white:#F7F9FC;--card:#16234C;--border:rgba(255,255,255,0.08);--green:#3FE8E0;--green-bg:rgba(63,232,224,0.1);}
+  *{box-sizing:border-box;margin:0;padding:0;}
+  body{background:var(--navy-deep);color:var(--white);font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Inter,sans-serif;line-height:1.55;}
+  a{color:inherit;text-decoration:none;}
+  .wrap{max-width:1160px;margin:0 auto;padding:0 24px;}
+  header{position:sticky;top:0;z-index:50;background:rgba(10,19,41,0.85);backdrop-filter:blur(10px);border-bottom:1px solid var(--border);}
+  nav{display:flex;align-items:center;justify-content:space-between;padding:16px 24px;max-width:1160px;margin:0 auto;}
+  .brand{display:flex;align-items:center;gap:10px;font-weight:700;font-size:18px;letter-spacing:-0.02em;}
+  .brand-mark{width:34px;height:34px;border-radius:9px;background:linear-gradient(135deg,var(--blue),var(--indigo));display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:800;}
+  .navlinks{display:flex;gap:32px;font-size:14px;color:var(--slate);}
+  .navlinks a:hover{color:var(--white);}
+  .nav-cta{background:linear-gradient(135deg,var(--blue),var(--indigo));padding:10px 18px;border-radius:8px;font-size:14px;font-weight:600;}
+
+  .hero{background:linear-gradient(180deg,var(--navy),var(--navy-deep));text-align:center;padding:64px 24px 90px;}
+  .eyebrow{font-size:12.5px;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:var(--cyan);margin-bottom:18px;}
+  h1{font-size:clamp(32px,5vw,52px);font-weight:800;letter-spacing:-0.02em;line-height:1.1;max-width:760px;margin:0 auto 22px;}
+  .subhead{font-size:17px;max-width:600px;margin:0 auto 30px;color:var(--slate);}
+  .cta-row{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;margin-bottom:14px;}
+  .btn-white{background:linear-gradient(135deg,var(--blue),var(--indigo));color:var(--white);padding:14px 26px;border-radius:9px;font-weight:700;font-size:15px;}
+  .btn-outline{border:1.5px solid var(--border);color:var(--white);padding:14px 26px;border-radius:9px;font-weight:700;font-size:15px;}
+  .microcopy{font-size:13px;color:var(--slate);}
+
+  .score-card{background:var(--card);color:var(--white);border:1px solid var(--border);border-radius:16px;max-width:640px;margin:50px auto -140px;padding:30px;text-align:left;box-shadow:0 20px 50px rgba(0,0,0,0.4);position:relative;z-index:2;}
+  .score-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:20px;}
+  .score-title{font-weight:800;font-size:15px;}
+  .score-sub{color:var(--slate);font-size:12px;}
+  .score-num{font-size:38px;font-weight:800;color:var(--cyan);}
+  .flag{display:flex;justify-content:space-between;padding:11px 0;border-top:1px solid var(--border);font-size:14px;}
+  .flag:first-of-type{border-top:none;}
+  .sev{font-size:11px;font-weight:700;padding:3px 10px;border-radius:6px;}
+  .sev-high{background:rgba(255,90,90,0.15);color:#ff8080;}
+  .sev-med{background:rgba(255,190,90,0.15);color:#ffc26b;}
+  .sev-low{background:var(--green-bg);color:var(--green);}
+
+  .post-hero{padding-top:180px;}
+
+  .jfive-section{margin:90px 0;background:linear-gradient(135deg,#101A33,#1a1440);border-radius:24px;padding:56px;position:relative;overflow:hidden;color:var(--white);border:1px solid var(--border);}
+  .jfive-section::before{content:"";position:absolute;top:-80px;right:-80px;width:280px;height:280px;background:radial-gradient(circle,rgba(63,232,224,0.25),transparent 70%);}
+  .jfive-grid{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:center;position:relative;z-index:1;}
+  .jfive-logo-block{display:flex;align-items:center;gap:16px;margin-bottom:22px;}
+  .jfive-logo-block img{width:56px;height:56px;border-radius:14px;}
+  .jfive-name{font-size:26px;font-weight:800;letter-spacing:-0.02em;}
+  .jfive-name .j{color:var(--blue);}
+  .jfive-tag{color:var(--cyan);font-size:12px;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;}
+  .jfive-copy h2{font-size:29px;font-weight:800;letter-spacing:-0.02em;margin-bottom:16px;line-height:1.18;}
+  .jfive-copy p{color:#B9C2D9;font-size:15.5px;margin-bottom:14px;}
+  .jfive-features{list-style:none;margin-top:20px;display:flex;flex-direction:column;gap:10px;}
+  .jfive-features li{display:flex;gap:10px;font-size:14px;}
+  .jfive-features li::before{content:"✓";color:var(--cyan);font-weight:800;}
+  .jfive-visual{background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);border-radius:16px;padding:26px;}
+  .jfive-visual-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:16px;font-size:13px;color:#8A95B5;}
+  .jfive-row{display:flex;justify-content:space-between;align-items:center;padding:11px 0;border-top:1px solid rgba(255,255,255,0.08);font-size:13.5px;}
+  .jfive-row:first-of-type{border-top:none;}
+  .dot{width:8px;height:8px;border-radius:50%;background:var(--cyan);display:inline-block;margin-right:8px;}
+
+  .stats{display:grid;grid-template-columns:repeat(4,1fr);gap:24px;margin:80px 0;text-align:center;}
+  .stat-num{font-size:36px;font-weight:800;color:var(--cyan);}
+  .stat-label{color:var(--slate);font-size:13px;margin-top:6px;}
+
+  .section-head{text-align:center;margin-bottom:46px;}
+  .section-head h2{font-size:32px;font-weight:800;letter-spacing:-0.02em;max-width:640px;margin:0 auto;}
+  .problems{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;margin-bottom:90px;}
+  .problem-card{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:26px;}
+  .problem-num{color:var(--blue);font-weight:800;font-size:14px;margin-bottom:10px;}
+  .problem-card h3{font-size:17px;margin-bottom:10px;}
+  .problem-card p{color:var(--slate);font-size:13.5px;}
+
+  .services{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;margin-bottom:90px;}
+  .service-card{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:26px;}
+  .service-card h3{font-size:17px;margin-bottom:8px;}
+  .service-card p{color:var(--slate);font-size:13.5px;margin-bottom:14px;}
+  .service-card a{color:var(--cyan);font-size:13.5px;font-weight:700;}
+
+  .quote{text-align:center;max-width:720px;margin:0 auto 90px;}
+  .quote p{font-size:22px;font-weight:600;line-height:1.4;color:var(--white);}
+  .quote span{display:block;color:var(--slate);font-size:13.5px;margin-top:16px;}
+
+  .final-cta{background:linear-gradient(135deg,var(--blue),var(--indigo));border-radius:20px;padding:52px;text-align:center;margin-bottom:90px;}
+  .final-cta h2{font-size:28px;font-weight:800;margin-bottom:10px;}
+  .final-cta p{margin-bottom:24px;opacity:0.9;}
+  .final-cta .btn-white{background:var(--navy-deep);}
+
+  footer{border-top:1px solid var(--border);padding:36px 0;color:var(--slate);font-size:13px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:16px;}
+  footer .footlinks{display:flex;gap:22px;}
+
+  @media (max-width:860px){
+    .jfive-grid{grid-template-columns:1fr;}
+    .stats{grid-template-columns:repeat(2,1fr);}
+    .problems,.services{grid-template-columns:1fr;}
+    .navlinks{display:none;}
+    .score-card{margin-top:30px;margin-bottom:0;}
+    .post-hero{padding-top:60px;}
+  }
+</style>
+<script src="/assets/attribution.js"></script>
+</head>
+<body>
+
+<header><nav>
+  <div class="brand"><div class="brand-mark">FGP</div>FORGE Growth Partners</div>
+  <div class="navlinks"><a href="services.html">Services</a><a href="about.html">About</a><a href="resources.html">Resources</a><a href="contact.html">Contact</a></div>
+  <a href="gym-analysis.html" class="nav-cta">AI Gym Health Score™ — Free</a>
+</nav></header>
+
+<section class="hero">
+  <div class="eyebrow">AI &amp; Business Consulting for Martial Arts Gyms</div>
+  <h1>Most gyms struggle. Yours doesn't have to.</h1>
+  <p class="subhead">We partner with martial arts gym owners to build the systems, automation, and teams that turn good gyms into great businesses. We've done it across dozens of successful academies. We can do it for yours.</p>
+  <div class="cta-row">
+    <a href="gym-analysis.html" class="btn-white">Get My Free AI Gym Health Score™</a>
+    <a href="services.html" class="btn-outline">See Our Services</a>
+  </div>
+  <div class="microcopy">Free · 60 seconds · No credit card required</div>
+
+  <div class="score-card">
+    <div class="score-top">
+      <div><div class="score-title">AI Gym Health Score™</div><div class="score-sub">Live analysis — benchmarked against 500+ gyms</div></div>
+      <div class="score-num">64</div>
+    </div>
+    <div class="flag"><span>No lead follow-up automation detected</span><span class="sev sev-high">High</span></div>
+    <div class="flag"><span>Retention system missing</span><span class="sev sev-high">High</span></div>
+    <div class="flag"><span>Inconsistent social presence</span><span class="sev sev-med">Med</span></div>
+    <div class="flag"><span>Curriculum structure opportunity</span><span class="sev sev-low">Low</span></div>
+  </div>
+</section>
+
+<div class="wrap post-hero">
+
+  <section>
+    <div class="section-head">
+      <h2>Your AI Gym Health Score™ tells you exactly where you're losing money.</h2>
+    </div>
+  </section>
+
+  <section class="jfive-section">
+    <div class="jfive-grid">
+      <div class="jfive-copy">
+        <div class="jfive-logo-block">
+          <img src="assets/jfive-logo.png" alt="JFIVE logo">
+          <div><div class="jfive-name"><span class="j">J</span>FIVE</div><div class="jfive-tag">AI Practice Management</div></div>
+        </div>
+        <h2>Every Forge partner runs on JFIVE.</h2>
+        <p>JFIVE is our proprietary AI practice management system, built specifically for martial arts academies. It handles the busywork that eats up your day — lead follow-up, member communication, scheduling, retention alerts, and reporting — so your team can focus on coaching.</p>
+        <p>It's not a bolt-on tool. It's the operating system for how your gym runs, learns, and grows — built by people who've actually run a gym, not repurposed enterprise software.</p>
+        <ul class="jfive-features">
+          <li>Automated lead follow-up in under 5 minutes</li>
+          <li>Retention risk alerts before students drift away</li>
+          <li>Billing, scheduling, and reporting in one dashboard</li>
+        </ul>
+      </div>
+      <div class="jfive-visual">
+        <div class="jfive-visual-header"><span>JFIVE Dashboard</span><span>Live</span></div>
+        <div class="jfive-row"><span><span class="dot"></span>New lead — contacted in 3 min</span><span>✓</span></div>
+        <div class="jfive-row"><span><span class="dot"></span>At-risk member flagged</span><span>Action needed</span></div>
+        <div class="jfive-row"><span><span class="dot"></span>Weekly retention report</span><span>Ready</span></div>
+        <div class="jfive-row"><span><span class="dot"></span>Billing recovery run</span><span>92% collected</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="stats">
+    <div><div class="stat-num">67%</div><div class="stat-label">of gyms fail by year 3</div></div>
+    <div><div class="stat-num">80%</div><div class="stat-label">of churn is preventable</div></div>
+    <div><div class="stat-num">9x</div><div class="stat-label">lead conversion with fast follow-up</div></div>
+    <div><div class="stat-num">10hrs</div><div class="stat-label">lost weekly to admin tasks</div></div>
+  </section>
+
+  <section>
+    <div class="section-head">
+      <div class="eyebrow" style="text-align:center;">Why gyms stay stuck</div>
+      <h2>The problems aren't about passion. They're about systems.</h2>
+    </div>
+    <div class="problems">
+      <div class="problem-card"><div class="problem-num">01</div><h3>No lead follow-up</h3><p>Most gyms respond to inquiries in 24+ hours. Leads contacted within 5 minutes convert 9x better. That's revenue you're leaving behind every week.</p></div>
+      <div class="problem-card"><div class="problem-num">02</div><h3>No retention system</h3><p>Students don't quit because they stopped liking BJJ. They quit because nobody noticed they were drifting. A 90-day onboarding system changes that.</p></div>
+      <div class="problem-card"><div class="problem-num">03</div><h3>No instructor development</h3><p>Your culture walks out the door with every instructor who leaves. Gyms that scale past 200 members have structured team development — not just good coaches.</p></div>
+    </div>
+  </section>
+
+  <section>
+    <div class="section-head">
+      <div class="eyebrow" style="text-align:center;">What we do</div>
+      <h2>Every service, built for martial arts gyms.</h2>
+    </div>
+    <div class="services">
+      <div class="service-card"><h3>AI &amp; Automation</h3><p>Lead follow-up, billing recovery, review generation — automated and running 24/7 without adding staff, powered by JFIVE.</p><a href="martial-arts-gym-automation.html">Learn more →</a></div>
+      <div class="service-card"><h3>Member Retention</h3><p>First-90-days systems, attendance monitoring, and win-back campaigns that stop the bleed before it starts.</p><a href="gym-member-retention.html">Learn more →</a></div>
+      <div class="service-card"><h3>Growth Strategy</h3><p>Pricing, marketing, referral programs, and geographic expansion — built around your specific market and goals.</p><a href="services.html">Learn more →</a></div>
+      <div class="service-card"><h3>BJJ Consulting</h3><p>Deep-dive operations consulting for BJJ academies — from curriculum structure to belt promotion standards.</p><a href="bjj-gym-consulting.html">Learn more →</a></div>
+      <div class="service-card"><h3>Team Development</h3><p>Curriculum architecture, instructor coaching, and career path frameworks that let your gym scale without you in every room.</p><a href="team-development.html">Learn more →</a></div>
+      <div class="service-card"><h3>Operational Systems</h3><p>SOPs, scheduling, billing infrastructure, and staff management frameworks that eliminate admin chaos.</p><a href="services.html">Learn more →</a></div>
+    </div>
+  </section>
+
+  <section class="quote">
+    <p>"The gyms that break through 200 members consistently have one thing the others don't — a system their team can run without the owner in every room."</p>
+    <span>Forge Growth Partners · Built from experience across dozens of successful academies</span>
+  </section>
+
+  <section class="final-cta">
+    <h2>Find out exactly what's holding your gym back</h2>
+    <p>Get your AI Gym Health Score™ — free, in 60 seconds, no obligation.</p>
+    <a href="gym-analysis.html" class="btn-white">Get My Free AI Score →</a>
+  </section>
+
+  <footer>
+    <div>© 2026 Forge Growth Partners · Built for martial arts gym owners serious about growth.</div>
+    <div class="footlinks"><a href="services.html">Services</a><a href="about.html">About</a><a href="gym-analysis.html">AI Score</a><a href="contact.html">Contact</a></div>
+  </footer>
+
+</div>
+</body>
+</html>

@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>About | Forge Growth Partners — Martial Arts Gym Consulting</title>
+<style>
+  :root{--navy:#0F1B3D;--navy-deep:#0A1329;--blue:#2E7CF6;--indigo:#5B3FE0;--cyan:#3FE8E0;--slate:#8B99AE;--white:#F7F9FC;--card:#16234C;--border:rgba(255,255,255,0.08);}
+  *{box-sizing:border-box;margin:0;padding:0;}
+  body{background:var(--navy-deep);color:var(--white);font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Inter,sans-serif;line-height:1.55;}
+  a{color:inherit;text-decoration:none;}
+  .wrap{max-width:1160px;margin:0 auto;padding:0 24px;}
+  header{position:sticky;top:0;z-index:50;background:rgba(10,19,41,0.85);backdrop-filter:blur(10px);border-bottom:1px solid var(--border);}
+  nav{display:flex;align-items:center;justify-content:space-between;padding:16px 24px;max-width:1160px;margin:0 auto;}
+  .brand{display:flex;align-items:center;gap:10px;font-weight:700;font-size:18px;letter-spacing:-0.02em;}
+  .brand-mark{width:34px;height:34px;border-radius:9px;background:linear-gradient(135deg,var(--blue),var(--indigo));display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:800;}
+  .navlinks{display:flex;gap:32px;font-size:14px;color:var(--slate);}
+  .nav-cta{background:linear-gradient(135deg,var(--blue),var(--indigo));padding:10px 18px;border-radius:8px;font-size:14px;font-weight:600;}
+
+  .hero{background:linear-gradient(180deg,var(--navy),var(--navy-deep));text-align:center;padding:56px 24px 70px;}
+  .eyebrow{font-size:12.5px;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:var(--cyan);margin-bottom:16px;}
+  h1{font-size:clamp(30px,4.5vw,46px);font-weight:800;letter-spacing:-0.02em;max-width:700px;margin:0 auto 16px;}
+  .lede{font-size:16px;max-width:600px;margin:0 auto;color:var(--slate);}
+
+  .wrap-inner{padding-top:56px;}
+  .founder{display:grid;grid-template-columns:280px 1fr;gap:44px;align-items:start;background:var(--card);border:1px solid var(--border);border-radius:18px;padding:40px;margin-bottom:56px;}
+  .founder-photo{width:100%;aspect-ratio:1;object-fit:cover;border-radius:14px;border:1px solid var(--border);}
+  .founder-name{font-size:24px;font-weight:800;margin-bottom:4px;}
+  .founder-title{color:var(--cyan);font-size:13.5px;font-weight:700;margin-bottom:18px;}
+  .credentials{list-style:none;display:flex;flex-direction:column;gap:6px;margin-bottom:22px;}
+  .credentials li{color:var(--slate);font-size:14px;padding-left:16px;position:relative;}
+  .credentials li::before{content:"—";position:absolute;left:0;color:var(--blue);}
+  .founder p{color:var(--white);font-size:15px;margin-bottom:14px;}
+
+  .jfive-callout{display:flex;align-items:center;gap:18px;background:linear-gradient(135deg,rgba(46,124,246,0.14),rgba(91,63,224,0.14));border:1px solid rgba(63,232,224,0.25);border-radius:14px;padding:20px 24px;margin-top:10px;}
+  .jfive-callout img{width:44px;height:44px;border-radius:11px;flex-shrink:0;}
+  .jfive-callout .jname{font-weight:800;font-size:16px;}
+  .jfive-callout .jname .j{color:var(--blue);}
+  .jfive-callout p{margin:0;font-size:13.5px;color:var(--slate);}
+  .jfive-callout a{color:var(--cyan);font-weight:700;font-size:13.5px;white-space:nowrap;margin-left:auto;}
+
+  .timeline{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-bottom:90px;}
+  .tl-card{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:20px;}
+  .tl-card h4{font-size:14.5px;margin-bottom:8px;color:var(--cyan);}
+  .tl-card p{color:var(--slate);font-size:13px;}
+
+  .section-head{text-align:center;margin-bottom:44px;}
+  .section-head h2{font-size:32px;font-weight:800;letter-spacing:-0.02em;max-width:600px;margin:0 auto;}
+  .team{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;margin-bottom:90px;}
+  .team-card{background:var(--card);border:1px solid var(--border);border-radius:14px;padding:22px;}
+  .team-card h3{font-size:15.5px;margin-bottom:10px;}
+  .team-card p{color:var(--slate);font-size:13px;}
+
+  .final-cta{background:linear-gradient(135deg,var(--blue),var(--indigo));border-radius:20px;padding:48px;text-align:center;margin-bottom:90px;}
+  .final-cta h2{font-size:25px;font-weight:800;margin-bottom:10px;}
+  .final-cta p{margin-bottom:20px;opacity:0.9;font-size:14px;}
+  .btn-white{background:var(--navy-deep);color:var(--white);padding:13px 24px;border-radius:9px;font-weight:700;font-size:14px;display:inline-block;}
+
+  footer{border-top:1px solid var(--border);padding:36px 0;color:var(--slate);font-size:13px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:16px;}
+  footer .footlinks{display:flex;gap:22px;}
+
+  @media (max-width:860px){
+    .founder{grid-template-columns:1fr;}
+    .timeline{grid-template-columns:1fr;}
+    .team{grid-template-columns:repeat(2,1fr);}
+    .jfive-callout{flex-direction:column;align-items:flex-start;}
+    .jfive-callout a{margin-left:0;}
+    .navlinks{display:none;}
+  }
+</style>
+<script src="/assets/attribution.js"></script>
+</head>
+<body>
+
+<header><nav>
+  <div class="brand"><div class="brand-mark">FGP</div>FORGE Growth Partners</div>
+  <div class="navlinks"><a href="services.html">Services</a><a href="about.html">About</a><a href="resources.html">Resources</a><a href="contact.html">Contact</a></div>
+  <a href="gym-analysis.html" class="nav-cta">AI Gym Health Score™ — Free</a>
+</nav></header>
+
+<section class="hero">
+  <div class="eyebrow">About Us</div>
+  <h1>A team built around your gym's growth.</h1>
+  <p class="lede">Not a solo consultant. Not a generic agency. A specialized team that has lived inside martial arts gyms and built systems that actually work on the mat.</p>
+</section>
+
+<div class="wrap wrap-inner">
+
+  <div class="founder">
+    <img src="assets/jamal-founder.jpg" alt="Jamal Patterson" class="founder-photo">
+    <div>
+      <div class="founder-name">Jamal Patterson</div>
+      <div class="founder-title">Founder, Forge Growth Partners</div>
+      <ul class="credentials">
+        <li>Renzo Gracie black belt</li>
+        <li>ADCC veteran</li>
+        <li>Pro MMA — IFL, Bellator</li>
+        <li>UWC Light Heavyweight Champion</li>
+        <li>Colgate University graduate</li>
+        <li>Corporate sector background</li>
+        <li>Founder, AllStar Martial Arts (2011)</li>
+      </ul>
+      <p>Jamal Patterson has been on both sides of the equation — competing at the highest levels of the sport and building a martial arts business from the ground up in a competitive market.</p>
+      <p>After founding AllStar Martial Arts in Union, NJ in 2011, Jamal spent years figuring out what actually works — not what gym consultants who've never run a dojo think works. The systems he built there became the foundation for Forge Growth Partners — and eventually, JFIVE, our proprietary AI practice management system.</p>
+      <p>Over the years, those same systems — curriculum frameworks, AI automation, retention infrastructure — have been applied to gyms across the country. Forge Growth Partners is the formalization of that work, with a specialized team assembled to deliver it at scale.</p>
+
+      <div class="jfive-callout">
+        <img src="assets/jfive-logo.png" alt="JFIVE logo">
+        <div><div class="jname"><span class="j">J</span>FIVE — AI Practice Management</div><p>Everything Jamal built at AllStar, now productized as the system powering every Forge partner gym.</p></div>
+        <a href="index.html#jfive">Learn more →</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="timeline">
+    <div class="tl-card"><h4>Colgate University</h4><p>Academic foundation + corporate career in strategy and operations</p></div>
+    <div class="tl-card"><h4>Pro MMA Career</h4><p>IFL, Bellator, UWC Light Heavyweight Championship — competed at the top of the sport</p></div>
+    <div class="tl-card"><h4>Corporate Sales Manager — Tech &amp; Medical</h4><p>Managed high-volume B2B sales in the tech and medical industries — built the business development, client management, and operational discipline that now drives Forge Growth Partners</p></div>
+    <div class="tl-card"><h4>2011 — AllStar Martial Arts</h4><p>Founded AllStar in Union, NJ — built systems for growth, retention, and instructor development from scratch</p></div>
+    <div class="tl-card"><h4>Multi-Gym Consulting</h4><p>Applied AllStar's frameworks to gyms across the country — operations, automation, curriculum, team development</p></div>
+    <div class="tl-card"><h4>2026 — Forge Growth Partners</h4><p>Formalized the practice — assembled a team of specialists to scale what works, powered by JFIVE</p></div>
+  </div>
+
+  <div class="section-head">
+    <div class="eyebrow" style="text-align:center;">The Team</div>
+    <h2>Specialists, not generalists.</h2>
+  </div>
+  <div class="team">
+    <div class="team-card"><h3>Gym Operations Consultants</h3><p>People who have worked inside martial arts gyms — building SOPs, managing staff, designing curriculum, and fixing the operational problems that owners can't see because they're too close to them.</p></div>
+    <div class="team-card"><h3>AI &amp; Automation Engineers</h3><p>Technical builders who specialize in gym management systems, CRM integrations, and AI-powered automation — not generic tech consultants repurposing enterprise tools for a gym that needs practical results.</p></div>
+    <div class="team-card"><h3>Marketing Strategists</h3><p>Marketing specialists with experience in local service businesses and martial arts specifically — referral systems, Google optimization, paid ads, and content that actually converts in your market.</p></div>
+    <div class="team-card"><h3>Business Analysts</h3><p>Data-driven analysts who benchmark your gym against real academy data, identify revenue gaps, and track the metrics that tell you whether your growth is sustainable or fragile.</p></div>
+  </div>
+
+  <div class="final-cta">
+    <h2>See how your gym stacks up — AI Gym Health Score™</h2>
+    <p>60 seconds. Benchmarked against 500+ martial arts gyms.</p>
+    <a href="gym-analysis.html" class="btn-white">Get My Free AI Score →</a>
+  </div>
+
+  <footer>
+    <div>© 2026 Forge Growth Partners</div>
+    <div class="footlinks"><a href="index.html">Home</a><a href="services.html">Services</a><a href="contact.html">Contact</a><a href="gym-analysis.html">AI Score</a></div>
+  </footer>
+
+</div>
+</body>
+</html>

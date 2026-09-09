@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Contact | Forge Growth Partners</title>
+<style>
+  :root{--navy:#0F1B3D;--navy-deep:#0A1329;--blue:#2E7CF6;--indigo:#5B3FE0;--cyan:#3FE8E0;--slate:#8B99AE;--white:#F7F9FC;--card:#16234C;--border:rgba(255,255,255,0.08);}
+  *{box-sizing:border-box;margin:0;padding:0;}
+  body{background:var(--navy-deep);color:var(--white);font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Inter,sans-serif;line-height:1.5;}
+  a{color:inherit;text-decoration:none;}
+  .wrap{max-width:1160px;margin:0 auto;padding:0 24px;}
+  header{position:sticky;top:0;z-index:50;background:rgba(10,19,41,0.85);backdrop-filter:blur(10px);border-bottom:1px solid var(--border);}
+  nav{display:flex;align-items:center;justify-content:space-between;padding:16px 24px;max-width:1160px;margin:0 auto;}
+  .brand{display:flex;align-items:center;gap:10px;font-weight:700;font-size:18px;letter-spacing:-0.02em;}
+  .brand-mark{width:34px;height:34px;border-radius:9px;background:linear-gradient(135deg,var(--blue),var(--indigo));display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:800;}
+  .navlinks{display:flex;gap:32px;font-size:14px;color:var(--slate);}
+  .navlinks a:hover{color:var(--white);}
+  .nav-cta{background:linear-gradient(135deg,var(--blue),var(--indigo));padding:10px 18px;border-radius:8px;font-size:14px;font-weight:600;}
+  .page-head{text-align:center;padding:70px 0 46px;}
+  h1{font-size:clamp(28px,4.5vw,42px);font-weight:800;letter-spacing:-0.03em;margin-bottom:12px;}
+  .lede{color:var(--slate);font-size:16px;max-width:560px;margin:0 auto;}
+  .grid{display:grid;grid-template-columns:1.4fr 1fr;gap:32px;margin-bottom:80px;}
+  .form-card{background:var(--card);border:1px solid var(--border);border-radius:20px;padding:36px;}
+  .form-card h2{font-size:20px;margin-bottom:6px;}
+  .form-card .sub{color:var(--slate);font-size:13px;margin-bottom:26px;}
+  .field{margin-bottom:18px;}
+  .field label{display:block;font-size:13px;color:var(--slate);margin-bottom:6px;font-weight:600;}
+  .field input, .field select, .field textarea{width:100%;background:var(--navy-deep);border:1px solid var(--border);border-radius:10px;padding:12px 14px;color:var(--white);font-size:14px;font-family:inherit;}
+  .field textarea{min-height:90px;resize:vertical;}
+  .row-2{display:grid;grid-template-columns:1fr 1fr;gap:14px;}
+  .btn-primary{background:linear-gradient(135deg,var(--blue),var(--indigo));padding:14px 24px;border-radius:10px;font-weight:700;font-size:14px;border:none;color:var(--white);width:100%;cursor:pointer;}
+  .side{display:flex;flex-direction:column;gap:20px;}
+  .side-card{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:24px;}
+  .side-card.accent{background:linear-gradient(135deg,rgba(46,124,246,0.14),rgba(91,63,224,0.14));border:1px solid rgba(63,232,224,0.25);}
+  .side-card h3{font-size:16px;margin-bottom:8px;}
+  .side-card p{color:var(--slate);font-size:13.5px;margin-bottom:14px;}
+  .side-card a.link-btn{display:inline-block;color:var(--cyan);font-weight:700;font-size:13.5px;}
+  .side-card .email{color:var(--blue);font-weight:600;font-size:14px;}
+  footer{border-top:1px solid var(--border);padding:40px 0;color:var(--slate);font-size:13px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:16px;}
+  footer .footlinks{display:flex;gap:24px;}
+  @media (max-width:860px){.grid{grid-template-columns:1fr;}.row-2{grid-template-columns:1fr;}.navlinks{display:none;}}
+</style>
+<script src="/assets/attribution.js"></script>
+</head>
+<body>
+<header><nav>
+  <div class="brand"><div class="brand-mark">FGP</div>FORGE Growth Partners</div>
+  <div class="navlinks"><a href="services.html">Services</a><a href="about.html">About</a><a href="resources.html">Resources</a><a href="contact.html">Contact</a></div>
+  <a href="gym-analysis.html" class="nav-cta">AI Gym Health Score™ — Free</a>
+</nav></header>
+
+<div class="wrap">
+  <div class="page-head">
+    <h1>Let's talk about your gym.</h1>
+    <p class="lede">Or skip the form — get your free AI Gym Health Score™ and we'll reach out with a real plan.</p>
+  </div>
+
+  <div class="grid">
+    <div class="form-card">
+      <h2>Send us a message</h2>
+      <div class="sub">We respond within one business day. No automated replies.</div>
+      <form id="contactForm" onsubmit="return submitContact(event)">
+        <div class="row-2">
+          <div class="field"><label>Name</label><input type="text" id="c_name" placeholder="Your name"></div>
+          <div class="field"><label>Gym Name</label><input type="text" id="c_gym" placeholder="Your academy name"></div>
+        </div>
+        <div class="row-2">
+          <div class="field"><label>Email</label><input type="email" id="c_email" placeholder="you@yourgym.com"></div>
+          <div class="field"><label>Phone (optional)</label><input type="tel" id="c_phone" placeholder="(555) 000-0000"></div>
+        </div>
+        <div class="field">
+          <label>What do you want to talk about?</label>
+          <select id="c_topic">
+            <option>Select a topic</option>
+            <option>AI &amp; Automation</option>
+            <option>Member Retention</option>
+            <option>Curriculum &amp; Team Development</option>
+            <option>Growth Strategy</option>
+            <option>Operational Systems</option>
+            <option>Ongoing Consulting</option>
+            <option>General Inquiry</option>
+          </select>
+        </div>
+        <div class="field">
+          <label>Tell us about your gym and what you're working on</label>
+          <textarea id="c_message" placeholder="A few sentences is plenty..."></textarea>
+        </div>
+        <button type="submit" class="btn-primary">Send Message →</button>
+      </form>
+      <div class="thanks" id="contactThanks" style="display:none;text-align:center;padding:20px 0;">
+        <h2 style="font-size:20px;margin-bottom:8px;">Message sent — thank you.</h2>
+        <p style="color:var(--slate);font-size:14px;">We respond within one business day.</p>
+      </div>
+    </div>
+
+    <div class="side">
+      <div class="side-card accent">
+        <h3>AI Gym Health Score™</h3>
+        <p>Skip the form. Answer 5 questions and get a personalized AI analysis of your gym in 60 seconds — free.</p>
+        <a href="gym-analysis.html" class="link-btn">Get My Free Score →</a>
+      </div>
+      <div class="side-card">
+        <h3>Email us directly</h3>
+        <div class="email">jpatterson@allstarbjj.com</div>
+      </div>
+      <div class="side-card">
+        <h3>Who we work with</h3>
+        <p>BJJ, MMA, Muay Thai, and multi-discipline martial arts gyms at every stage — from 30-member boutique schools to 300+ member operations.</p>
+      </div>
+      <div class="side-card">
+        <h3>What to expect</h3>
+        <p>A real reply within one business day. If it's a good fit, we'll schedule a free strategy call — no pitch, just a conversation about your gym.</p>
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    <div>© 2026 Forge Growth Partners</div>
+    <div class="footlinks"><a href="/">Home</a><a href="services.html">Services</a><a href="about.html">About</a><a href="gym-analysis.html">AI Score</a></div>
+  </footer>
+</div>
+<script>
+  function submitContact(evt){
+    evt.preventDefault();
+    var email = document.getElementById('c_email').value.trim();
+    if(!email){ alert('Please enter your email.'); return false; }
+    var payload = {
+      name: document.getElementById('c_name').value.trim(),
+      gym: document.getElementById('c_gym').value.trim(),
+      email: email,
+      phone: document.getElementById('c_phone').value.trim(),
+      topic: document.getElementById('c_topic').value,
+      message: document.getElementById('c_message').value.trim(),
+      attribution: window.ForgeAttribution || null
+    };
+    fetch('/.netlify/functions/submit-contact', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(payload)
+    }).catch(function(err){ console.error('Contact submit failed:', err); });
+    document.getElementById('contactForm').style.display = 'none';
+    document.getElementById('contactThanks').style.display = 'block';
+    return false;
+  }
+</script>
+</body>
+</html>

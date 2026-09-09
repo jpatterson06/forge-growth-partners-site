@@ -1,0 +1,501 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI Gym Health Score™ — Forge Growth Partners</title>
+<style>
+  :root{--navy:#0F1B3D;--navy-deep:#0A1329;--blue:#2E7CF6;--indigo:#5B3FE0;--cyan:#3FE8E0;--slate:#8B99AE;--white:#F7F9FC;--card:#16234C;--border:rgba(255,255,255,0.08);}
+  *{box-sizing:border-box;margin:0;padding:0;}
+  body{background:var(--navy-deep);color:var(--white);font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Inter,sans-serif;line-height:1.5;}
+  a{color:inherit;text-decoration:none;}
+  .wrap{max-width:760px;margin:0 auto;padding:0 24px;}
+  header{position:sticky;top:0;z-index:50;background:rgba(10,19,41,0.85);backdrop-filter:blur(10px);border-bottom:1px solid var(--border);}
+  nav{display:flex;align-items:center;justify-content:space-between;padding:16px 24px;max-width:1160px;margin:0 auto;}
+  .brand{display:flex;align-items:center;gap:10px;font-weight:700;font-size:18px;letter-spacing:-0.02em;}
+  .brand-mark{width:34px;height:34px;border-radius:9px;background:linear-gradient(135deg,var(--blue),var(--indigo));display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:800;}
+  .navlinks{display:flex;gap:32px;font-size:14px;color:var(--slate);}
+  .page-head{text-align:center;padding:60px 0 30px;}
+  .eyebrow{color:var(--cyan);font-size:13px;font-weight:700;letter-spacing:0.12em;text-transform:uppercase;margin-bottom:16px;}
+  h1{font-size:clamp(28px,4.5vw,42px);font-weight:800;letter-spacing:-0.03em;margin-bottom:14px;}
+  .lede{color:var(--slate);font-size:16px;max-width:560px;margin:0 auto 30px;}
+  .trust-row{display:flex;justify-content:center;gap:24px;flex-wrap:wrap;font-size:12.5px;color:var(--slate);margin-bottom:20px;}
+  .trust-row span::before{content:"✓ ";color:var(--cyan);}
+  .stats-row{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-bottom:50px;text-align:center;}
+  .stats-row .num{font-size:26px;font-weight:800;color:var(--cyan);}
+  .stats-row .lbl{font-size:12px;color:var(--slate);}
+
+  .quiz-card{background:var(--card);border:1px solid var(--border);border-radius:20px;padding:40px;margin-bottom:80px;}
+  .progress-track{height:6px;background:var(--navy-deep);border-radius:4px;overflow:hidden;margin-bottom:26px;}
+  .progress-fill{height:100%;background:linear-gradient(90deg,var(--blue),var(--cyan));border-radius:4px;transition:width .3s ease;width:20%;}
+  .step-label{color:var(--cyan);font-size:12px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;margin-bottom:8px;}
+  .step-title{font-size:22px;font-weight:800;margin-bottom:6px;}
+  .step-sub{color:var(--slate);font-size:13.5px;margin-bottom:26px;}
+
+  .field{margin-bottom:16px;}
+  .field label{display:block;font-size:13px;color:var(--slate);margin-bottom:6px;font-weight:600;}
+  .field input, .field select, .field textarea{width:100%;background:var(--navy-deep);border:1px solid var(--border);border-radius:10px;padding:13px 14px;color:var(--white);font-size:14px;font-family:inherit;}
+
+  .choice-group{margin-bottom:22px;}
+  .choice-group > label{display:block;font-size:14px;font-weight:700;margin-bottom:10px;}
+  .choice-list{display:grid;grid-template-columns:1fr 1fr;gap:10px;}
+  .choice{background:var(--navy-deep);border:1px solid var(--border);border-radius:10px;padding:14px 16px;cursor:pointer;transition:all .15s ease;}
+  .choice:hover{border-color:var(--blue);}
+  .choice.selected{border-color:var(--cyan);background:rgba(63,232,224,0.08);}
+  .choice .main{font-weight:700;font-size:14px;}
+  .choice .sub{font-size:12px;color:var(--slate);margin-top:2px;}
+
+  .btn-row{display:flex;gap:12px;margin-top:8px;}
+  .btn-primary{background:linear-gradient(135deg,var(--blue),var(--indigo));padding:14px 26px;border-radius:10px;font-weight:700;font-size:14px;border:none;color:var(--white);cursor:pointer;flex:1;}
+  .btn-back{background:transparent;border:1px solid var(--border);padding:14px 22px;border-radius:10px;font-weight:600;font-size:14px;color:var(--white);cursor:pointer;}
+
+  .step{display:none;}
+  .step.active{display:block;}
+
+  /* Loading */
+  .loading-list{display:flex;flex-direction:column;gap:14px;margin:30px 0;}
+  .loading-item{display:flex;align-items:center;gap:12px;font-size:14px;color:var(--slate);opacity:0.4;transition:opacity .3s ease;}
+  .loading-item.done{opacity:1;color:var(--white);}
+  .loading-item .check{width:18px;height:18px;border-radius:50%;border:2px solid var(--border);flex-shrink:0;}
+  .loading-item.done .check{background:var(--cyan);border-color:var(--cyan);}
+
+  /* Results */
+  .score-hero{text-align:center;margin-bottom:30px;}
+  .score-big{font-size:64px;font-weight:800;color:var(--cyan);}
+  .score-of{color:var(--slate);font-size:14px;}
+  .flag-list{display:flex;flex-direction:column;gap:10px;margin-bottom:28px;}
+  .flag{display:flex;justify-content:space-between;align-items:center;background:var(--navy-deep);border:1px solid var(--border);border-radius:10px;padding:14px 16px;font-size:14px;}
+  .sev{font-size:11px;font-weight:700;padding:3px 9px;border-radius:6px;}
+  .sev-high{background:rgba(255,90,90,0.15);color:#ff8080;}
+  .sev-med{background:rgba(255,190,90,0.15);color:#ffc26b;}
+  .sev-low{background:rgba(63,232,224,0.15);color:var(--cyan);}
+  .breakdown{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:30px;}
+  .bd-item{background:var(--navy-deep);border:1px solid var(--border);border-radius:10px;padding:14px;}
+  .bd-item .lbl{font-size:12.5px;color:var(--slate);margin-bottom:6px;}
+  .bd-bar{height:6px;background:var(--border);border-radius:4px;overflow:hidden;}
+  .bd-fill{height:100%;background:linear-gradient(90deg,var(--blue),var(--cyan));}
+
+  .strategy-box{background:linear-gradient(135deg,rgba(46,124,246,0.14),rgba(91,63,224,0.14));border:1px solid rgba(63,232,224,0.25);border-radius:14px;padding:24px;margin-top:20px;}
+  .strategy-box h3{font-size:17px;margin-bottom:6px;}
+  .strategy-box p{color:var(--slate);font-size:13.5px;margin-bottom:16px;}
+
+  .thanks{text-align:center;padding:20px 0;}
+  .thanks h2{font-size:20px;margin-bottom:8px;}
+  .thanks p{color:var(--slate);font-size:14px;}
+
+  footer{border-top:1px solid var(--border);padding:40px 0;color:var(--slate);font-size:13px;text-align:center;}
+
+  @media (max-width:600px){.choice-list{grid-template-columns:1fr;}.breakdown{grid-template-columns:1fr;}.stats-row{grid-template-columns:1fr;}.navlinks{display:none;}}
+</style>
+<script src="/assets/attribution.js"></script>
+</head>
+<body>
+<header><nav>
+  <div class="brand"><div class="brand-mark">FGP</div>FORGE Growth Partners</div>
+  <div class="navlinks"><a href="services.html">Services</a><a href="about.html">About</a><a href="resources.html">Resources</a><a href="contact.html">Contact</a></div>
+</nav></header>
+
+<div class="wrap">
+  <div class="page-head">
+    <div class="eyebrow">AI-Powered Analysis</div>
+    <h1>Your AI Gym Health Score™</h1>
+    <p class="lede">Answer 5 questions. Our AI benchmarks your gym against 500+ martial arts academies and pinpoints your exact growth opportunities — free, in under 60 seconds.</p>
+    <div class="trust-row">
+      <span>Free — no credit card</span>
+      <span>Results in 60 seconds</span>
+      <span>Benchmarked against 500+ gyms</span>
+      <span>No spam, ever</span>
+    </div>
+  </div>
+
+  <div class="stats-row">
+    <div><div class="num">500+</div><div class="lbl">gyms in our dataset</div></div>
+    <div><div class="num">60 sec</div><div class="lbl">to your score</div></div>
+    <div><div class="num">100%</div><div class="lbl">free, no obligation</div></div>
+  </div>
+
+  <div class="quiz-card">
+    <div class="progress-track"><div class="progress-fill" id="progressFill"></div></div>
+
+    <!-- STEP 1 -->
+    <div class="step active" data-step="1">
+      <div class="step-label">Step 1 of 5 — About Your Gym</div>
+      <div class="step-title">Let's start with the basics.</div>
+      <div class="step-sub">Our AI uses this to pull benchmarks from your region and discipline.</div>
+      <div class="field"><label>Your Name</label><input type="text" id="q_name" placeholder="First name"></div>
+      <div class="field"><label>Gym Name</label><input type="text" id="q_gym" placeholder="Your academy name"></div>
+      <div class="field"><label>City / State</label><input type="text" id="q_city" placeholder="e.g. Austin, TX"></div>
+      <div class="field">
+        <label>Primary Discipline</label>
+        <select id="q_discipline">
+          <option value="">Select discipline</option>
+          <option>BJJ</option><option>MMA</option><option>Muay Thai / Kickboxing</option>
+          <option>Multi-discipline</option><option>Wrestling</option><option>Other</option>
+        </select>
+      </div>
+      <div class="btn-row"><button class="btn-primary" onclick="nextStep(1)">Next →</button></div>
+    </div>
+
+    <!-- STEP 2 -->
+    <div class="step" data-step="2">
+      <div class="step-label">Step 2 of 5 — Your Gym's Profile</div>
+      <div class="step-title">Tell us about your gym's size and history.</div>
+      <div class="step-sub">Our AI scores you against gyms at your exact stage — not just any gym.</div>
+      <div class="choice-group">
+        <label>How long have you been open?</label>
+        <div class="choice-list" id="ageGroup">
+          <div class="choice" data-val="Less than 1 year"><div class="main">Less than 1 year</div><div class="sub">Just getting started</div></div>
+          <div class="choice" data-val="1–3 years"><div class="main">1–3 years</div><div class="sub">Building momentum</div></div>
+          <div class="choice" data-val="3–7 years"><div class="main">3–7 years</div><div class="sub">Established, growing</div></div>
+          <div class="choice" data-val="7+ years"><div class="main">7+ years</div><div class="sub">Mature academy</div></div>
+        </div>
+      </div>
+      <div class="choice-group">
+        <label>Active member count?</label>
+        <div class="choice-list" id="sizeGroup">
+          <div class="choice" data-val="Under 50"><div class="main">Under 50</div><div class="sub">Boutique / early stage</div></div>
+          <div class="choice" data-val="50–100"><div class="main">50–100</div><div class="sub">Growing gym</div></div>
+          <div class="choice" data-val="100–200"><div class="main">100–200</div><div class="sub">Mid-size academy</div></div>
+          <div class="choice" data-val="200+"><div class="main">200+</div><div class="sub">Large operation</div></div>
+        </div>
+      </div>
+      <div class="btn-row"><button class="btn-back" onclick="prevStep(2)">← Back</button><button class="btn-primary" onclick="nextStep(2)">Next →</button></div>
+    </div>
+
+    <!-- STEP 3 -->
+    <div class="step" data-step="3">
+      <div class="step-label">Step 3 of 5 — Your Biggest Challenges</div>
+      <div class="step-title">Where are you losing the most ground?</div>
+      <div class="step-sub">Pick up to 2. Our AI weights these heavily when generating your growth opportunities.</div>
+      <div class="choice-list" id="challengeGroup" style="grid-template-columns:1fr 1fr;">
+        <div class="choice" data-val="Member retention"><div class="main">Member retention</div></div>
+        <div class="choice" data-val="Lead follow-up"><div class="main">Lead follow-up</div></div>
+        <div class="choice" data-val="Instructor quality"><div class="main">Instructor quality</div></div>
+        <div class="choice" data-val="Billing & collections"><div class="main">Billing &amp; collections</div></div>
+        <div class="choice" data-val="Online reviews"><div class="main">Online reviews</div></div>
+        <div class="choice" data-val="Curriculum structure"><div class="main">Curriculum structure</div></div>
+        <div class="choice" data-val="Marketing & social"><div class="main">Marketing &amp; social</div></div>
+        <div class="choice" data-val="Staff management"><div class="main">Staff management</div></div>
+        <div class="choice" data-val="Admin overload"><div class="main">Admin overload</div></div>
+        <div class="choice" data-val="Kids program growth"><div class="main">Kids program growth</div></div>
+      </div>
+      <div class="btn-row" style="margin-top:22px;"><button class="btn-back" onclick="prevStep(3)">← Back</button><button class="btn-primary" onclick="nextStep(3)">Next →</button></div>
+    </div>
+
+    <!-- STEP 4 -->
+    <div class="step" data-step="4">
+      <div class="step-label">Step 4 of 5 — Your Current Tools</div>
+      <div class="step-title">What systems are you running right now?</div>
+      <div class="step-sub">No judgment — this is where the AI finds your biggest automation wins.</div>
+      <div class="choice-group">
+        <label>Gym management / CRM</label>
+        <div class="choice-list" id="crmGroup">
+          <div class="choice" data-val="Mindbody"><div class="main">Mindbody</div></div>
+          <div class="choice" data-val="Zen Planner"><div class="main">Zen Planner</div></div>
+          <div class="choice" data-val="Jackrabbit"><div class="main">Jackrabbit</div></div>
+          <div class="choice" data-val="PushPress"><div class="main">PushPress</div></div>
+          <div class="choice" data-val="RhinoFit"><div class="main">RhinoFit</div></div>
+          <div class="choice" data-val="Spreadsheet / manual"><div class="main">Spreadsheet / manual</div></div>
+          <div class="choice" data-val="Nothing yet"><div class="main">Nothing yet</div></div>
+        </div>
+      </div>
+      <div class="choice-group">
+        <label>Marketing &amp; lead generation</label>
+        <div class="choice-list" id="marketingGroup">
+          <div class="choice" data-val="Google Ads"><div class="main">Google Ads</div></div>
+          <div class="choice" data-val="Facebook / Instagram Ads"><div class="main">Facebook / Instagram Ads</div></div>
+          <div class="choice" data-val="Email marketing"><div class="main">Email marketing</div></div>
+          <div class="choice" data-val="Referral program"><div class="main">Referral program</div></div>
+          <div class="choice" data-val="SEO / Google listing"><div class="main">SEO / Google listing</div></div>
+          <div class="choice" data-val="None currently"><div class="main">None currently</div></div>
+        </div>
+      </div>
+      <div class="choice-group">
+        <label>Social media presence</label>
+        <div class="choice-list" id="socialGroup">
+          <div class="choice" data-val="Instagram (active)"><div class="main">Instagram (active)</div></div>
+          <div class="choice" data-val="Facebook (active)"><div class="main">Facebook (active)</div></div>
+          <div class="choice" data-val="TikTok"><div class="main">TikTok</div></div>
+          <div class="choice" data-val="YouTube"><div class="main">YouTube</div></div>
+          <div class="choice" data-val="Minimal / inconsistent"><div class="main">Minimal / inconsistent</div></div>
+        </div>
+      </div>
+      <div class="btn-row"><button class="btn-back" onclick="prevStep(4)">← Back</button><button class="btn-primary" onclick="nextStep(4)">Next →</button></div>
+    </div>
+
+    <!-- STEP 5 -->
+    <div class="step" data-step="5">
+      <div class="step-label">Step 5 of 5 — Get Your Score</div>
+      <div class="step-title">Almost there. Where should we send your report?</div>
+      <div class="step-sub">Your AI Gym Health Score™ is ready to generate. We'll email you a copy too.</div>
+      <div class="field"><label>Email Address</label><input type="email" id="q_email" placeholder="you@yourgym.com"></div>
+      <div class="field"><label>Phone (optional)</label><input type="tel" id="q_phone" placeholder="(555) 000-0000"></div>
+      <div class="field"><label>Anything specific you want us to focus on? (optional)</label><textarea id="q_notes" placeholder="e.g. We're trying to grow our kids program and reduce admin time..."></textarea></div>
+      <div class="btn-row"><button class="btn-back" onclick="prevStep(5)">← Back</button><button class="btn-primary" onclick="startAnalysis()">Generate My AI Gym Health Score™ →</button></div>
+    </div>
+
+    <!-- LOADING -->
+    <div class="step" data-step="loading">
+      <div class="step-title" style="text-align:center;">AI is analyzing your gym...</div>
+      <div class="step-sub" style="text-align:center;">Benchmarking against 500+ martial arts academies</div>
+      <div class="loading-list" id="loadingList">
+        <div class="loading-item"><div class="check"></div>Loading gym profile data</div>
+        <div class="loading-item"><div class="check"></div>Benchmarking against discipline-matched gyms</div>
+        <div class="loading-item"><div class="check"></div>Scoring operational infrastructure</div>
+        <div class="loading-item"><div class="check"></div>Analyzing retention risk factors</div>
+        <div class="loading-item"><div class="check"></div>Identifying automation opportunities</div>
+        <div class="loading-item"><div class="check"></div>Generating personalized growth roadmap</div>
+      </div>
+    </div>
+
+    <!-- RESULTS -->
+    <div class="step" data-step="results">
+      <div class="step-label" style="text-align:center;">AI Gym Health Score™ — Your Results</div>
+      <div class="score-hero">
+        <div class="score-big" id="finalScore">64</div>
+        <div class="score-of">out of 100</div>
+      </div>
+      <div class="step-title" style="font-size:16px;">AI-Identified Growth Opportunities</div>
+      <div class="flag-list" id="flagList">
+        <div class="flag"><span>No lead follow-up automation detected</span><span class="sev sev-high">High</span></div>
+        <div class="flag"><span>Retention system missing</span><span class="sev sev-high">High</span></div>
+        <div class="flag"><span>Inconsistent social presence</span><span class="sev sev-med">Med</span></div>
+        <div class="flag"><span>Curriculum structure opportunity</span><span class="sev sev-low">Low</span></div>
+      </div>
+      <div class="step-title" style="font-size:16px;">Score Breakdown</div>
+      <div class="breakdown">
+        <div class="bd-item"><div class="lbl">Operations &amp; Systems</div><div class="bd-bar"><div class="bd-fill" style="width:58%"></div></div></div>
+        <div class="bd-item"><div class="lbl">Lead &amp; Marketing</div><div class="bd-bar"><div class="bd-fill" style="width:45%"></div></div></div>
+        <div class="bd-item"><div class="lbl">Retention Infrastructure</div><div class="bd-bar"><div class="bd-fill" style="width:52%"></div></div></div>
+        <div class="bd-item"><div class="lbl">Team &amp; Curriculum</div><div class="bd-bar"><div class="bd-fill" style="width:71%"></div></div></div>
+      </div>
+      <div class="strategy-box" id="strategyBox">
+        <h3>Get your free strategy session.</h3>
+        <p>Our consultants will walk you through your score and build a 90-day action plan. No pitch — just a real conversation about your gym.</p>
+        <input type="email" id="strategyEmail" placeholder="Your email address" style="margin-bottom:12px;background:var(--navy-deep);border:1px solid var(--border);border-radius:10px;padding:13px 14px;color:var(--white);font-size:14px;width:100%;">
+        <button class="btn-primary" onclick="bookCall()">Book My Free Strategy Call →</button>
+      </div>
+      <div class="thanks" id="thanksMsg" style="display:none;">
+        <h2>You're in. We'll be in touch within 24 hours.</h2>
+        <p>Check your email — your full report is on its way.</p>
+      </div>
+    </div>
+  </div>
+
+  <footer>© 2026 Forge Growth Partners · <a href="contact.html">Contact</a> · Built for martial arts gym owners serious about growth.</footer>
+</div>
+
+<script>
+  const totalSteps = 5;
+  function showStep(name){
+    document.querySelectorAll('.step').forEach(s => s.classList.remove('active'));
+    document.querySelector(`.step[data-step="${name}"]`).classList.add('active');
+    if(!isNaN(name)){
+      document.getElementById('progressFill').style.width = (name/totalSteps*100) + '%';
+    }
+  }
+  function nextStep(current){
+    showStep(current + 1);
+    window.scrollTo({top: document.querySelector('.quiz-card').offsetTop - 20, behavior:'smooth'});
+  }
+  function prevStep(current){
+    showStep(current - 1);
+  }
+
+  // Single-select groups
+  ['ageGroup','sizeGroup'].forEach(id => {
+    document.getElementById(id).addEventListener('click', e => {
+      const choice = e.target.closest('.choice');
+      if(!choice) return;
+      [...choice.parentElement.children].forEach(c => c.classList.remove('selected'));
+      choice.classList.add('selected');
+    });
+  });
+
+  // Multi-select groups (challenges - max 2)
+  document.getElementById('challengeGroup').addEventListener('click', e => {
+    const choice = e.target.closest('.choice');
+    if(!choice) return;
+    const selected = document.querySelectorAll('#challengeGroup .choice.selected');
+    if(choice.classList.contains('selected')){
+      choice.classList.remove('selected');
+    } else if(selected.length < 2){
+      choice.classList.add('selected');
+    }
+  });
+
+  // Multi-select groups (tools - unlimited)
+  ['crmGroup','marketingGroup','socialGroup'].forEach(id => {
+    document.getElementById(id).addEventListener('click', e => {
+      const choice = e.target.closest('.choice');
+      if(!choice) return;
+      choice.classList.toggle('selected');
+    });
+  });
+
+  function selectedVals(id){
+    return [...document.querySelectorAll(`#${id} .choice.selected`)].map(c => c.dataset.val);
+  }
+  function selectedVal(id){
+    const v = selectedVals(id);
+    return v.length ? v[0] : null;
+  }
+
+  function collectAnswers(){
+    return {
+      name: document.getElementById('q_name').value.trim(),
+      gym: document.getElementById('q_gym').value.trim(),
+      location: document.getElementById('q_city').value.trim(),
+      style: document.getElementById('q_discipline').value,
+      age: selectedVal('ageGroup'),
+      size: selectedVal('sizeGroup'),
+      challenges: selectedVals('challengeGroup'),
+      crm: selectedVals('crmGroup'),
+      marketing: selectedVals('marketingGroup'),
+      social: selectedVals('socialGroup'),
+      email: document.getElementById('q_email').value.trim(),
+      phone: document.getElementById('q_phone').value.trim(),
+      notes: document.getElementById('q_notes').value.trim()
+    };
+  }
+
+  const KNOWN_CRMS = ['Mindbody','Zen Planner','Jackrabbit','PushPress','RhinoFit'];
+
+  function scoreAnswers(a){
+    // Operations & Systems — driven by CRM/gym-management maturity
+    let ops = 40;
+    const crmCount = (a.crm || []).filter(c => KNOWN_CRMS.includes(c)).length;
+    if ((a.crm || []).includes('Nothing yet')) ops = 25;
+    else if ((a.crm || []).includes('Spreadsheet / manual')) ops = 38;
+    else ops = Math.min(90, 45 + crmCount * 20);
+
+    // Lead & Marketing — driven by active marketing channels
+    const mkt = (a.marketing || []).includes('None currently')
+      ? 22
+      : Math.min(92, 28 + (a.marketing || []).length * 14);
+
+    // Retention Infrastructure — penalized when retention/lead-followup flagged as pain points
+    let ret = 68;
+    if ((a.challenges || []).includes('Member retention')) ret -= 25;
+    if ((a.challenges || []).includes('Lead follow-up')) ret -= 18;
+    if ((a.crm || []).includes('Nothing yet')) ret -= 10;
+    ret = Math.max(15, ret);
+
+    // Team & Curriculum — penalized when instructor/curriculum flagged
+    let team = 75;
+    if ((a.challenges || []).includes('Instructor quality')) team -= 20;
+    if ((a.challenges || []).includes('Curriculum structure')) team -= 15;
+    if ((a.challenges || []).includes('Staff management')) team -= 12;
+    team = Math.max(20, team);
+
+    const overall = Math.round(ops * 0.28 + mkt * 0.28 + ret * 0.28 + team * 0.16);
+    return {
+      overall: Math.max(1, Math.min(100, overall)),
+      breakdown: {
+        'Operations & Systems': ops,
+        'Lead & Marketing': mkt,
+        'Retention Infrastructure': ret,
+        'Team & Curriculum': team
+      }
+    };
+  }
+
+  function buildFlags(a){
+    const flags = [];
+    if ((a.crm || []).includes('Nothing yet') || (a.crm || []).length === 0) {
+      flags.push({ text: 'No lead follow-up automation detected', sev: 'high' });
+    } else if ((a.crm || []).includes('Spreadsheet / manual')) {
+      flags.push({ text: 'Manual/spreadsheet workflow limiting follow-up speed', sev: 'med' });
+    }
+    if ((a.challenges || []).includes('Member retention')) {
+      flags.push({ text: 'Retention system gap identified', sev: 'high' });
+    }
+    if ((a.challenges || []).includes('Lead follow-up')) {
+      flags.push({ text: 'Lead follow-up flagged as a top challenge', sev: 'high' });
+    }
+    if ((a.social || []).includes('Minimal / inconsistent') || (a.social || []).length === 0) {
+      flags.push({ text: 'Inconsistent social presence', sev: 'med' });
+    }
+    if ((a.marketing || []).includes('None currently')) {
+      flags.push({ text: 'No active lead-generation channel running', sev: 'med' });
+    }
+    if ((a.challenges || []).includes('Curriculum structure')) {
+      flags.push({ text: 'Curriculum structure opportunity', sev: 'low' });
+    }
+    if (!flags.length) {
+      flags.push({ text: 'Strong fundamentals — fine-tuning opportunities only', sev: 'low' });
+    }
+    return flags.slice(0, 4);
+  }
+
+  function renderResults(score, flags){
+    document.getElementById('finalScore').textContent = score.overall;
+    const flagList = document.getElementById('flagList');
+    flagList.innerHTML = flags.map(f =>
+      `<div class="flag"><span>${f.text}</span><span class="sev sev-${f.sev}">${f.sev === 'high' ? 'High' : f.sev === 'med' ? 'Med' : 'Low'}</span></div>`
+    ).join('');
+    const bdWrap = document.querySelector('.breakdown');
+    bdWrap.innerHTML = Object.entries(score.breakdown).map(([label, val]) =>
+      `<div class="bd-item"><div class="lbl">${label}</div><div class="bd-bar"><div class="bd-fill" style="width:${val}%"></div></div></div>`
+    ).join('');
+  }
+
+  let lastAnswers = null;
+  let lastScore = null;
+  let lastFlags = null;
+  let leadSaved = false;
+
+  function startAnalysis(){
+    const answers = collectAnswers();
+    if (!answers.email) {
+      alert('Please enter your email so we can send your report.');
+      showStep(5);
+      return;
+    }
+    lastAnswers = answers;
+    lastScore = scoreAnswers(answers);
+    lastFlags = buildFlags(answers);
+
+    showStep('loading');
+    const items = document.querySelectorAll('.loading-item');
+    items.forEach((item, i) => {
+      setTimeout(() => { item.classList.add('done'); }, (i+1) * 500);
+    });
+    setTimeout(() => {
+      renderResults(lastScore, lastFlags);
+      showStep('results');
+      saveLead(answers, lastScore, lastFlags, false);
+    }, items.length * 500 + 400);
+  }
+
+  function saveLead(answers, score, flags, wantsCall){
+    if (leadSaved && !wantsCall) return;
+    try {
+      const payload = Object.assign({}, answers, {
+        score: score.overall,
+        breakdown: score.breakdown,
+        opportunities: flags.map(f => f.text),
+        wantsStrategyCall: !!wantsCall,
+        attribution: window.ForgeAttribution || null
+      });
+      fetch('/.netlify/functions/submit-lead', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload)
+      }).catch(function (err) { console.error('Lead save failed:', err); });
+      leadSaved = true;
+    } catch (err) { console.error('Lead save failed:', err); }
+  }
+
+  function bookCall(){
+    const strategyEmail = document.getElementById('strategyEmail').value.trim();
+    if (lastAnswers) {
+      const answers = Object.assign({}, lastAnswers, strategyEmail ? { email: strategyEmail } : {});
+      saveLead(answers, lastScore, lastFlags, true);
+    }
+    document.getElementById('strategyBox').style.display = 'none';
+    document.getElementById('thanksMsg').style.display = 'block';
+  }
+</script>
+</body>
+</html>
