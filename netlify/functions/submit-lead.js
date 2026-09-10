@@ -38,7 +38,7 @@ exports.handler = async (event) => {
 
   const { name, gym, location, style, age, size, email, phone, notes,
     challenges, crm, marketing, social, score, breakdown, opportunities,
-    wantsStrategyCall, attribution } = body;
+    wantsStrategyCall, attribution, consent, consentText, consentAt } = body;
 
   if (!email) {
     return { statusCode: 400, body: JSON.stringify({ error: 'Email is required' }) };
@@ -65,7 +65,9 @@ exports.handler = async (event) => {
         phone: phone || null,
         raw_form_data: { location, style, age, size, notes, challenges, crm, marketing,
           social, wants_strategy_call: !!wantsStrategyCall, ai_gym_health_score: score,
-          score_breakdown: breakdown, opportunities_shown: opportunities },
+          score_breakdown: breakdown, opportunities_shown: opportunities,
+          consent: { given: !!consent, text: consentText || null, at: consentAt || null,
+            ip: event.headers['x-nf-client-connection-ip'] || event.headers['client-ip'] || null } },
         first_touch_at: new Date().toISOString()
       })
       .select('id')

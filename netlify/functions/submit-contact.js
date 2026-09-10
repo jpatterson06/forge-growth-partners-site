@@ -31,7 +31,8 @@ exports.handler = async (event) => {
   }
 
   const { name, gym, email, phone, size, revenue, decisionMaker, timeline,
-    crm, referralSource, preferredContact, topic, message, attribution } = body;
+    crm, referralSource, preferredContact, topic, message, attribution,
+    consent, consentText, consentAt } = body;
 
   if (!email) {
     return { statusCode: 400, body: JSON.stringify({ error: 'Email is required' }) };
@@ -58,7 +59,9 @@ exports.handler = async (event) => {
         phone: phone || null,
         next_action: 'Reply to contact form inquiry',
         raw_form_data: { channel: 'contact_form', gym, size, revenue, decisionMaker,
-          timeline, crm, referralSource, preferredContact, topic, message },
+          timeline, crm, referralSource, preferredContact, topic, message,
+          consent: { given: !!consent, text: consentText || null, at: consentAt || null,
+            ip: event.headers['x-nf-client-connection-ip'] || event.headers['client-ip'] || null } },
         first_touch_at: new Date().toISOString()
       })
       .select('id')

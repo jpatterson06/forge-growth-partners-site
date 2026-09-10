@@ -34,6 +34,8 @@
   .check-pill input{accent-color:var(--cyan);}
   .check-pill.checked{border-color:var(--cyan);background:rgba(63,232,224,0.08);color:var(--white);}
   .form-error{display:none;background:rgba(232,93,93,0.12);border:1px solid rgba(232,93,93,0.4);color:#f2a5a5;font-size:13px;padding:10px 14px;border-radius:10px;margin-bottom:16px;}
+  .consent-field{display:flex;gap:10px;align-items:flex-start;margin-bottom:20px;font-size:12.5px;color:var(--slate);line-height:1.4;}
+  .consent-field input{margin-top:3px;accent-color:var(--cyan);flex-shrink:0;width:15px;height:15px;}
   .btn-primary{background:linear-gradient(135deg,var(--blue),var(--indigo));padding:14px 24px;border-radius:10px;font-weight:700;font-size:14px;border:none;color:var(--white);width:100%;cursor:pointer;}
   .btn-primary:disabled{opacity:0.6;cursor:not-allowed;}
   .side{display:flex;flex-direction:column;gap:20px;}
@@ -179,6 +181,10 @@
           <label>Tell us about your gym and what you're working on</label>
           <textarea id="c_message" placeholder="A few sentences is plenty..."></textarea>
         </div>
+        <div class="consent-field">
+          <input type="checkbox" id="c_consent">
+          <label for="c_consent">I agree to receive calls and texts, including by automated technology, from Forge Growth Partners about my inquiry. Msg &amp; data rates may apply. Reply STOP to opt out, HELP for help.</label>
+        </div>
         <button type="submit" class="btn-primary" id="submitBtn">Send Message →</button>
       </form>
       <div class="thanks" id="contactThanks" style="display:none;text-align:center;padding:20px 0;">
@@ -231,6 +237,13 @@
       errBox.style.display = 'block';
       return false;
     }
+    var phoneVal = document.getElementById('c_phone').value.trim();
+    var consentChecked = document.getElementById('c_consent').checked;
+    if(phoneVal && !consentChecked){
+      errBox.textContent = 'Please check the consent box so we can text or call you back at the number provided.';
+      errBox.style.display = 'block';
+      return false;
+    }
     var payload = {
       name: name,
       gym: document.getElementById('c_gym').value.trim(),
@@ -245,6 +258,9 @@
       preferredContact: document.getElementById('c_contact_method').value,
       topic: document.getElementById('c_topic').value,
       message: document.getElementById('c_message').value.trim(),
+      consent: consentChecked,
+      consentText: consentChecked ? document.querySelector('label[for="c_consent"]').textContent.trim() : null,
+      consentAt: consentChecked ? new Date().toISOString() : null,
       attribution: window.ForgeAttribution || null
     };
     var btn = document.getElementById('submitBtn');

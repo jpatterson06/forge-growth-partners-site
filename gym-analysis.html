@@ -35,6 +35,8 @@
   .field{margin-bottom:16px;}
   .field label{display:block;font-size:13px;color:var(--slate);margin-bottom:6px;font-weight:600;}
   .field input, .field select, .field textarea{width:100%;background:var(--navy-deep);border:1px solid var(--border);border-radius:10px;padding:13px 14px;color:var(--white);font-size:14px;font-family:inherit;}
+  .consent-field{display:flex;gap:10px;align-items:flex-start;margin-bottom:18px;font-size:12.5px;color:var(--slate);line-height:1.4;}
+  .consent-field input{margin-top:3px;accent-color:var(--cyan);flex-shrink:0;width:15px;height:15px;}
 
   .choice-group{margin-bottom:22px;}
   .choice-group > label{display:block;font-size:14px;font-weight:700;margin-bottom:10px;}
@@ -231,6 +233,10 @@
       <div class="field"><label>Email Address</label><input type="email" id="q_email" placeholder="you@yourgym.com"></div>
       <div class="field"><label>Phone (optional)</label><input type="tel" id="q_phone" placeholder="(555) 000-0000"></div>
       <div class="field"><label>Anything specific you want us to focus on? (optional)</label><textarea id="q_notes" placeholder="e.g. We're trying to grow our kids program and reduce admin time..."></textarea></div>
+      <div class="consent-field">
+        <input type="checkbox" id="q_consent">
+        <label for="q_consent">I agree to receive calls and texts, including by automated technology, from Forge Growth Partners about my inquiry. Msg &amp; data rates may apply. Reply STOP to opt out, HELP for help.</label>
+      </div>
       <div class="btn-row"><button class="btn-back" onclick="prevStep(5)">← Back</button><button class="btn-primary" onclick="startAnalysis()">Generate My AI Gym Health Score™ →</button></div>
     </div>
 
@@ -355,7 +361,10 @@
       social: selectedVals('socialGroup'),
       email: document.getElementById('q_email').value.trim(),
       phone: document.getElementById('q_phone').value.trim(),
-      notes: document.getElementById('q_notes').value.trim()
+      notes: document.getElementById('q_notes').value.trim(),
+      consent: document.getElementById('q_consent').checked,
+      consentText: document.getElementById('q_consent').checked ? document.querySelector('label[for="q_consent"]').textContent.trim() : null,
+      consentAt: document.getElementById('q_consent').checked ? new Date().toISOString() : null
     };
   }
 
@@ -449,6 +458,11 @@
     const answers = collectAnswers();
     if (!answers.email) {
       alert('Please enter your email so we can send your report.');
+      showStep(5);
+      return;
+    }
+    if (answers.phone && !document.getElementById('q_consent').checked) {
+      alert('Please check the consent box so we can text or call you back at the number provided.');
       showStep(5);
       return;
     }
