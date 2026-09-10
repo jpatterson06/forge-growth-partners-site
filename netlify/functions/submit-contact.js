@@ -1,9 +1,22 @@
 // Netlify Function: submit-contact
 // Receives the contact.html form submission and writes it to the same
-// Supabase `leads` table as the gym-analysis quiz (lead_type: 'contact_form'),
-// via the service-role key for the same RLS-bypass reason as submit-lead.js.
+// Supabase `leads` table as the gym-analysis quiz (lead_type: 'gym_owner',
+// source_detail: 'contact_form' to distinguish it from the quiz), via the
+// service-role key for the same RLS-bypass reason as submit-lead.js.
 
 const { createClient } = require('@supabase/supabase-js');
+
+const SIZE_MEMBERS = { tiny: 15, small: 50, medium: 110, large: 200, xl: 300 };
+// Revenue buckets stored as a representative midpoint (numeric column) so the
+// sales dashboard can sort/filter by it; the raw bucket label is kept in
+// raw_form_data and qualification_responses for exact display.
+const REVENUE_MIDPOINT = {
+  under5k: 3000,
+  '5to15k': 10000,
+  '15to30k': 22500,
+  '30to60k': 45000,
+  over60k: 75000
+};
 
 exports.handler = async (event) => {
   if (event.httpMethod !== 'POST') {
@@ -17,7 +30,8 @@ exports.handler = async (event) => {
     return { statusCode: 400, body: JSON.stringify({ error: 'Invalid JSON' }) };
   }
 
-  const { name, gym, email, phone, topic, message, attribution } = body;
+  const { name, gym, email, phone, size, revenue, decisionMaker, timeline,
+    crm, referralSource, preferredContact, topic, message, attribution } = body;
 
   if (!email) {
     return { statusCode: 400, body: JSON.stringify({ error: 'Email is required' }) };
@@ -37,11 +51,14 @@ exports.handler = async (event) => {
       .from('leads')
       .insert({
         source: 'website',
+        source_detail: 'contact_form',
         lead_type: 'gym_owner',
         full_name: name || null,
         email,
         phone: phone || null,
-        raw_form_data: { channel: 'contact_form', gym, topic, message },
+        next_action: 'Reply to contact form inquiry',
+        raw_form_data: { channel: 'contact_form', gym, size, revenue, decisionMaker,
+          timeline, crm, referralSource, preferredContact, topic, message },
         first_touch_at: new Date().toISOString()
       })
       .select('id')
@@ -50,8 +67,37 @@ exports.handler = async (event) => {
     if (leadErr) throw leadErr;
     const leadId = lead.id;
 
-    if (gym) {
-      await supabase.from('gym_profiles').insert({ lead_id: leadId, gym_name: gym });
+    if (gym || size || revenue || (crm && crm.length)) {
+      await supabase.from('gym_profiles').insert({
+        lead_id: leadId,
+        gym_name: gym || null,
+        active_members: SIZE_MEMBERS[size] || null,
+        monthly_revenue: REVENUE_MIDPOINT[revenue] || null,
+        current_crm: (crm || []).join(', ') || null
+      });
+    }
+
+    const qa = [
+      ['topic', 'What they want to talk about', topic],
+      ['decision_maker', "Are they the decision-maker?", decisionMaker],
+      ['timeline', 'Timeline to start', timeline],
+      ['referral_source', 'How they heard about us', referralSource],
+      ['preferred_contact_method', 'Preferred contact method', preferredContact],
+      ['revenue_range', 'Monthly gym revenue (self-reported range)', revenue],
+      ['member_count_range', 'Active member count (self-reported range)', size],
+      ['message', 'Message submitted with contact form', message]
+    ].filter((row) => row[2]);
+
+    if (qa.length) {
+      await supabase.from('qualification_responses').insert(
+        qa.map((row) => ({
+          lead_id: leadId,
+          question_key: row[0],
+          question_prompt: row[1],
+          answer_raw: String(row[2]),
+          answered_at: new Date().toISOString()
+        }))
+      );
     }
 
     if (attribution && (attribution.first_touch || attribution.last_touch)) {
