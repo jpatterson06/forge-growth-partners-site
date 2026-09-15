@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="robots" content="noindex,nofollow"><title>Andre Gusmão Academy — Homepage Draft</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;800&family=Barlow:wght@400;600&family=Lora:ital,wght@0,400;0,600;1,400&display=swap">
+<style>
+  :root{
+    --ink:#122019; --ink-2:#3A4A41; --mute:#6E7C73;
+    --paper:#F4F6F0; --paper-2:#E9EDE3; --line:#CFD7C9;
+    --gold:#D9A21B; --gold-ink:#7A5606; --green:#1F6B3A; --wood:#7A4A22;
+    --hero:#122019; --hero-text:#F4F6F0;
+  }
+  @media (prefers-color-scheme: dark){
+    :root:not([data-theme="light"]){
+      --ink:#EEF2EA; --ink-2:#C2CCC3; --mute:#8E9B92;
+      --paper:#0F1A14; --paper-2:#172520; --line:#2B3B32;
+      --gold:#E6B53A; --gold-ink:#F0C85C; --green:#5FBF84; --wood:#C48A56;
+      --hero:#0A120E; --hero-text:#EEF2EA;
+    }
+  }
+  :root[data-theme="dark"]{
+    --ink:#EEF2EA; --ink-2:#C2CCC3; --mute:#8E9B92;
+    --paper:#0F1A14; --paper-2:#172520; --line:#2B3B32;
+    --gold:#E6B53A; --gold-ink:#F0C85C; --green:#5FBF84; --wood:#C48A56;
+    --hero:#0A120E; --hero-text:#EEF2EA;
+  }
+  body{margin:0;background:var(--paper);color:var(--ink);font-family:Lora,Georgia,"Times New Roman",serif;font-size:17px;line-height:1.6;}
+  .wrap{max-width:1040px;margin:0 auto;padding-inline:20px;}
+  h1,h2,h3{font-family:"Barlow Condensed","Arial Narrow",Impact,sans-serif;text-transform:uppercase;letter-spacing:.01em;line-height:1;margin:0;text-wrap:balance;}
+  h1{font-size:clamp(40px,7vw,78px);font-weight:800;}
+  h2{font-size:clamp(28px,4vw,42px);font-weight:800;margin-bottom:14px;}
+  h3{font-size:22px;font-weight:600;margin-bottom:6px;}
+  p{margin:0 0 14px;max-width:68ch;}
+  .eyebrow{font-family:Barlow,Arial,sans-serif;font-weight:600;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--gold-ink);margin-bottom:12px;}
+  a{color:var(--green);}
+  .top{background:var(--hero);color:var(--hero-text);}
+  .top .wrap{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px;padding-block:14px;font-family:Barlow,Arial,sans-serif;font-size:14px;}
+  .top .brand{font-family:"Barlow Condensed",sans-serif;font-weight:800;font-size:22px;text-transform:uppercase;letter-spacing:.04em;}
+  .top .nap a{color:var(--hero-text);text-decoration:none;}
+  .hero{background:var(--hero);color:var(--hero-text);border-top:1px solid rgba(255,255,255,.08);}
+  .hero .wrap{padding-block:56px 48px;display:grid;grid-template-columns:1.4fr 1fr;gap:36px;align-items:end;}
+  .hero .eyebrow{color:var(--gold);}
+  .hero p{color:var(--hero-text);opacity:.9;font-size:18px;}
+  .hero .stripe{height:8px;background:linear-gradient(90deg,var(--gold) 0 40%,var(--green) 40% 75%,var(--wood) 75%);}
+  .cta{display:inline-block;background:var(--gold);color:#1a1200;font-family:Barlow,Arial,sans-serif;font-weight:600;padding:14px 22px;text-decoration:none;font-size:16px;letter-spacing:.02em;}
+  .cta:focus-visible,.top a:focus-visible{outline:3px solid var(--gold);outline-offset:3px;}
+  .cta.ghost{background:transparent;color:var(--hero-text);border:2px solid var(--gold);}
+  .btns{display:flex;gap:12px;flex-wrap:wrap;margin-top:8px;}
+  .proof{font-family:Barlow,Arial,sans-serif;font-size:14px;display:grid;gap:10px;border-left:2px solid var(--gold);padding-left:16px;}
+  .proof b{display:block;font-family:"Barlow Condensed",sans-serif;font-size:26px;font-weight:800;color:var(--gold);line-height:1;}
+  section{padding-block:52px;border-bottom:1px solid var(--line);}
+  .two{display:grid;grid-template-columns:1fr 1fr;gap:36px;}
+  .timeline{list-style:none;padding:0;margin:8px 0 0;display:grid;gap:0;border-left:2px solid var(--gold);}
+  .timeline li{padding:10px 0 10px 20px;position:relative;font-family:Barlow,Arial,sans-serif;font-size:15px;}
+  .timeline li::before{content:"";position:absolute;left:-7px;top:16px;width:12px;height:12px;border-radius:50%;background:var(--gold);}
+  .timeline b{display:block;font-family:"Barlow Condensed",sans-serif;font-size:20px;font-weight:800;text-transform:uppercase;}
+  .prog{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;}
+  .prog article{border-top:4px solid var(--green);padding-top:14px;}
+  .prog article:nth-child(2){border-color:var(--wood);} .prog article:nth-child(3){border-color:var(--gold);}
+  .prog p{font-size:16px;}
+  .kids{background:var(--paper-2);}
+  .staff{display:grid;grid-template-columns:repeat(2,1fr);gap:18px 32px;}
+  .staff div{font-size:16px;}
+  .staff b{font-family:"Barlow Condensed",sans-serif;font-size:21px;text-transform:uppercase;display:block;}
+  .place{display:grid;grid-template-columns:1fr 1fr;gap:32px;}
+  .hours{font-family:Barlow,Arial,sans-serif;font-size:15px;border:1px solid var(--line);padding:16px 18px;}
+  .hours dt{font-weight:600;color:var(--mute);font-size:12px;letter-spacing:.12em;text-transform:uppercase;margin-top:10px;}
+  .hours dd{margin:2px 0 0;}
+  details{border-top:1px solid var(--line);padding:12px 0;}
+  details:last-of-type{border-bottom:1px solid var(--line);}
+  summary{cursor:pointer;font-family:"Barlow Condensed",sans-serif;font-size:21px;font-weight:600;text-transform:uppercase;}
+  summary:focus-visible{outline:3px solid var(--gold);}
+  details p{margin-top:8px;font-size:16px;}
+  .final{background:var(--hero);color:var(--hero-text);border:0;}
+  .final p{color:var(--hero-text);}
+  footer{font-family:Barlow,Arial,sans-serif;font-size:13px;color:var(--mute);padding-block:24px;}
+  @media (max-width:760px){
+    .hero .wrap,.two,.prog,.staff,.place{grid-template-columns:1fr;}
+    section{padding-block:40px;}
+  }
+  @media (prefers-reduced-motion:no-preference){ .cta{transition:transform .15s;} .cta:hover{transform:translateY(-1px);} }
+</style>
+</head>
+<body>
+
+<div class="top"><div class="wrap">
+  <div class="brand">Andre Gusmão Academy</div>
+  <div class="nap">1657 N Miami Ave, Miami, FL 33136 · <a href="tel:+13054090991">(305) 409-0991</a></div>
+</div></div>
+
+<div class="hero">
+  <div class="wrap">
+    <div>
+      <div class="eyebrow">Brazilian Jiu-Jitsu · Muay Thai · Capoeira · Kids &amp; Adults</div>
+      <h1>Brazilian Jiu-Jitsu, Muay Thai &amp; Capoeira Classes in Miami</h1>
+      <p>Train with Mestre Andre Gusmão, a UFC veteran and second-degree black belt under Renzo Gracie, at a Brazilian-run academy in the heart of Miami, between Wynwood and Downtown. Kids, teens, and adults. Your first class is free.</p>
+      <div class="btns"><a class="cta" href="#trial">Book a Free Trial Class</a><a class="cta ghost" href="tel:+13054090991">Call (305) 409-0991</a></div>
+    </div>
+    <div class="proof">
+      <div><b>2016</b>Open in Miami since summer 2016</div>
+      <div><b>UFC · IFL</b>Head coach fought in the UFC and won the 2007 IFL World Team Championship</div>
+      <div><b>Renzo Gracie</b>Second-degree black belt lineage</div>
+    </div>
+  </div>
+  <div class="stripe"></div>
+</div>
+
+<section id="story"><div class="wrap two">
+  <div>
+    <div class="eyebrow">From Goiânia to Miami</div>
+    <h2>A Brazilian Academy, Built by a Brazilian Fighter</h2>
+    <p>Andre Machado Gusmão was born in Goiânia, in the state of Goiás, Brazil. Before he ever put on a gi, he was playing capoeira. It was his first martial art, and it is still the heartbeat of this academy. Capoeira is where Brazilian music, dance, and fighting meet, and Andre grew up inside that culture, in the roda, with the berimbau setting the rhythm.</p>
+    <p>In 2001 he moved to New York and started teaching capoeira, becoming the highest-ranking representative of Grupo Capoeira Nagô in the United States. Jiu-jitsu came next. As a blue belt he reached the final of the 2000 IBJJF World Championship, and in New York he trained under Renzo Gracie, earning his black belt in one of the most respected lineages in Brazilian jiu-jitsu.</p>
+    <p>Then came the cage. Andre went 5-0 to start his professional MMA career, helped the New York Pitbulls win the 2007 IFL World Team Championship, and made his UFC debut at UFC 87 in 2008 against a fellow debutant named Jon Jones. Capoeira was his base the whole way. Commentators called his style unusual. His students call it fun.</p>
+    <p>In the summer of 2016, Mestre Andre opened Andre Gusmão Academy in Miami to bring all of that home: the discipline of jiu-jitsu, the conditioning of Muay Thai, and the joy of capoeira, taught the way it is taught in Brazil, to families in Miami.</p>
+  </div>
+  <div>
+    <div class="eyebrow">The journey</div>
+    <ul class="timeline">
+      <li><b>1977 · Goiânia, Brazil</b>Born in the capital of Goiás. Capoeira is his first art.</li>
+      <li><b>2000 · World Championship</b>Reaches the IBJJF Worlds final as a blue belt in the 100 kg division.</li>
+      <li><b>2001 · New York</b>Moves to the US and begins teaching Capoeira Nagô.</li>
+      <li><b>2007 · IFL Champion</b>Wins the IFL World Team Championship with the New York Pitbulls.</li>
+      <li><b>2008 · UFC 87</b>Octagon debut. Black belt under Renzo Gracie.</li>
+      <li><b>2009 · Pan American Champion</b>Pan-American No-Gi black belt champion.</li>
+      <li><b>2016 · Miami</b>Opens Andre Gusmão Academy at 1657 N Miami Ave.</li>
+    </ul>
+  </div>
+</div></section>
+
+<section id="programs"><div class="wrap">
+  <div class="eyebrow">Programs</div>
+  <h2>Martial Arts Classes for Kids, Teens &amp; Adults in Miami</h2>
+  <div class="prog">
+    <article>
+      <h3>Brazilian Jiu-Jitsu Miami</h3>
+      <p>Gi and no-gi jiu-jitsu classes for complete beginners through competitors, in the Renzo Gracie lineage. Fundamentals classes teach you to escape, control, and submit without relying on size or strength. Advanced classes and open mat sharpen your game for IBJJF competition or just for the fun of rolling.</p>
+      <p><a href="#trial">Try a BJJ class free →</a></p>
+    </article>
+    <article>
+      <h3>Muay Thai Miami</h3>
+      <p>Muay Thai and kickboxing classes that build real striking: punches, kicks, knees, elbows, and clinch. Pad work, bag rounds, and technical sparring for those who want it. Great for fitness and for people who want to learn how to defend themselves standing up.</p>
+      <p><a href="#trial">Try a Muay Thai class free →</a></p>
+    </article>
+    <article>
+      <h3>Capoeira Miami</h3>
+      <p>The art Mestre Andre grew up with. Capoeira classes for kids and adults blend kicks, acrobatics, music, and Portuguese song in the roda. Taught by Capoeira Nagô mestres and professors. If you have been searching for authentic capoeira classes in Miami, this is the place.</p>
+      <p><a href="#trial">Try a Capoeira class free →</a></p>
+    </article>
+  </div>
+</div></section>
+
+<section class="kids" id="kids"><div class="wrap two">
+  <div>
+    <div class="eyebrow">Kids &amp; Teens</div>
+    <h2>Kids Martial Arts Miami: Confidence, Focus, Anti-Bullying</h2>
+    <p>Parents in Wynwood, Midtown, Edgewater, and Downtown Miami bring their kids here for the same reasons parents in Brazil do: kids who train learn to focus, to respect their coaches and training partners, and to stay calm when someone pushes them. Our kids BJJ and kids capoeira programs are safe, structured, and fun, with age-appropriate classes for little ones through teens.</p>
+    <p>Our anti-bullying program teaches kids how to set boundaries with words first and how to protect themselves if it goes further, without ever becoming the aggressor.</p>
+  </div>
+  <div>
+    <div class="eyebrow">Adults &amp; Beginners</div>
+    <h2>New to Martial Arts?</h2>
+    <p>Most of our adult members walked in having never trained. Beginner jiu-jitsu classes in Miami should not feel like being thrown to the wolves, and here they don't. You will be paired with patient partners, taught one move at a time, and welcomed into a community that trains hard and looks out for each other. Women train here, professionals train here, and plenty of people over 40 train here.</p>
+  </div>
+</div></section>
+
+<section id="instructors"><div class="wrap">
+  <div class="eyebrow">Instructors</div>
+  <h2>Learn From People Who Lived It</h2>
+  <div class="staff">
+    <div><b>Mestre Andre Gusmão · Head Coach</b>Second-degree BJJ black belt under Renzo Gracie. UFC veteran, 2007 IFL World Team Champion, Pan-American No-Gi black belt champion (2009). Capoeira Nagô mestre. From Goiânia, Brazil.</div>
+    <div><b>Professor Alexandre Sousa · Capoeira</b>Training since 1983 under Mestre Suíno. Red and black cord (2023). Five-time JEBS champion, featured in Capoeira Magazine, and has taught capoeira in Brazil and more than 20 countries over 28 years.</div>
+    <div><b>Professor Thiago Pereira · Jiu-Jitsu</b>Black belt under Professor Jeferson Moura (Gracie Barra lineage). Trained with Gregor Gracie in New York and joined the academy in 2023.</div>
+    <div><b>Professor Luis Gustavo Tovar · BJJ, Muay Thai &amp; Capoeira</b>Teaches across all three programs, so you get the same standard whether you come for grappling, striking, or the roda.</div>
+    <div><b>Professor Catalina Sanchez · Capoeira</b>Leads capoeira classes with an emphasis on music, movement, and welcoming beginners.</div>
+    <div><b>Mestre Pequinês · Capoeira</b>Founding master of Grupo Capoeira Nagô, based in Goiânia, Brazil, and the head of the Nagô family worldwide.</div>
+  </div>
+</div></section>
+
+<section id="community"><div class="wrap two">
+  <div>
+    <div class="eyebrow">Community</div>
+    <h2>Serving Miami the Brazilian Way</h2>
+    <p>Miami is home to one of the largest Brazilian communities in the United States, and this academy is a piece of Brazil in the middle of it. Portuguese and English are spoken on the mats. Kids learn capoeira songs the way kids in Goiânia learn them. Families from Little Haiti to Brickell train together, and after class nobody is in a hurry to leave.</p>
+    <p>The academy hosts rodas, belt and cord ceremonies, seminars with visiting mestres and black belts, and competition teams that represent Miami at IBJJF events. If you are Brazilian and missing home, or you have never been to Brazil and want to understand why the culture is so loved, come to a roda.</p>
+  </div>
+  <div>
+    <div class="eyebrow">Why people choose us</div>
+    <p><strong>The head coach is on the mat.</strong> Mestre Andre teaches. He is not a name on the wall.</p>
+    <p><strong>Three arts under one roof.</strong> Grappling, striking, and capoeira, so you can build a complete game or just find the one you love.</p>
+    <p><strong>Real lineage.</strong> Renzo Gracie jiu-jitsu and Capoeira Nagô, taught by people who earned their rank in Brazil and New York.</p>
+    <p><strong>A rare find.</strong> Very few Miami academies offer authentic capoeira alongside BJJ and Muay Thai.</p>
+  </div>
+</div></section>
+
+<section id="location"><div class="wrap place">
+  <div>
+    <div class="eyebrow">Location</div>
+    <h2>A Martial Arts Gym Near Wynwood, Midtown &amp; Downtown Miami</h2>
+    <p>We are at 1657 N Miami Ave, Miami, FL 33136, on the west edge of Edgewater and a few blocks from Wynwood, Overtown, and Downtown. If you live or work in Brickell, Midtown, the Design District, or Little Havana, the academy is a short drive, and there is parking nearby. Members come from across Miami-Dade for the capoeira program in particular, because there is nowhere else quite like it.</p>
+    <p>Searching for "BJJ near me," "Muay Thai Wynwood," or "capoeira classes Miami"? You found it. Call <a href="tel:+13054090991">(305) 409-0991</a> or book below.</p>
+  </div>
+  <dl class="hours">
+    <dt>Address</dt><dd>1657 N Miami Ave, Miami, FL 33136</dd>
+    <dt>Phone</dt><dd><a href="tel:+13054090991">(305) 409-0991</a></dd>
+    <dt>Programs</dt><dd>Brazilian Jiu-Jitsu (gi &amp; no-gi), Muay Thai / Kickboxing, Capoeira, Kids BJJ, Kids Capoeira, Teens, Anti-Bullying</dd>
+    <dt>Hours</dt><dd>See the current class schedule on the Schedule page. Morning, evening, and Saturday classes.</dd>
+    <dt>Intro offer</dt><dd>4 weeks of training for $49, plus a free first class.</dd>
+  </dl>
+</div></section>
+
+<section id="faq"><div class="wrap">
+  <div class="eyebrow">Questions</div>
+  <h2>Frequently Asked Questions</h2>
+  <details open><summary>Do I need experience to start jiu-jitsu or Muay Thai?</summary><p>No. Most members start with zero experience. Beginner classes teach the basics step by step, and your training partners will help you, not hurt you.</p></details>
+  <details><summary>What is capoeira, and is it good for kids?</summary><p>Capoeira is a Brazilian martial art that combines kicks, dodges, acrobatics, music, and song, practiced in a circle called the roda. Kids love it because it is playful and musical, and parents love it because it builds coordination, rhythm, confidence, and respect. Our kids capoeira classes are taught by Capoeira Nagô instructors.</p></details>
+  <details><summary>How much does it cost?</summary><p>Your first class is free. New members can get 4 weeks of unlimited training for $49. After that, monthly memberships depend on the program and how many days a week you train. Call (305) 409-0991 for current pricing.</p></details>
+  <details><summary>What should I wear to my first class?</summary><p>For jiu-jitsu or capoeira, comfortable athletic clothes with no zippers or pockets. For Muay Thai, shorts and a t-shirt. We have loaner gis and gloves for your trial class.</p></details>
+  <details><summary>Where do you get your black belts from?</summary><p>Mestre Andre is a second-degree black belt under Renzo Gracie. Professor Thiago Pereira is a black belt under Jeferson Moura in the Gracie Barra lineage. Our capoeira instructors are graded through Grupo Capoeira Nagô, founded by Mestre Pequinês in Goiânia, Brazil.</p></details>
+  <details><summary>Do you have women's classes and self-defense?</summary><p>Women train in all of our programs, and jiu-jitsu in particular is built for smaller people to control larger ones. Ask about women's self-defense seminars when you book your trial.</p></details>
+</div></section>
+
+<section class="final" id="trial"><div class="wrap">
+  <div class="eyebrow" style="color:var(--gold)">Free trial</div>
+  <h2>Come Train With Us</h2>
+  <p>Your first class at Andre Gusmão Academy is free. Pick jiu-jitsu, Muay Thai, or capoeira, for you or your kids, and we will set you up with a coach and a loaner uniform.</p>
+  <div class="btns"><a class="cta" href="https://andregusmaoacademy.com/free-trial/">Book a Free Trial Class</a><a class="cta ghost" href="tel:+13054090991">Call (305) 409-0991</a></div>
+</div></section>
+
+<footer><div class="wrap">Andre Gusmão Academy · 1657 N Miami Ave, Miami, FL 33136 · (305) 409-0991 · Homepage draft prepared by Forge Growth Partners for review</div></footer>
+
+</body>
+</html>
