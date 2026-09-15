@@ -36,6 +36,7 @@
   .form-error{display:none;background:rgba(232,93,93,0.12);border:1px solid rgba(232,93,93,0.4);color:#f2a5a5;font-size:13px;padding:10px 14px;border-radius:10px;margin-bottom:16px;}
   .consent-field{display:flex;gap:10px;align-items:flex-start;margin-bottom:20px;font-size:12.5px;color:var(--slate);line-height:1.4;}
   .consent-field input{margin-top:3px;accent-color:var(--cyan);flex-shrink:0;width:15px;height:15px;}
+  .consent-field a{color:var(--cyan);text-decoration:underline;}
   .btn-primary{background:linear-gradient(135deg,var(--blue),var(--indigo));padding:14px 24px;border-radius:10px;font-weight:700;font-size:14px;border:none;color:var(--white);width:100%;cursor:pointer;}
   .btn-primary:disabled{opacity:0.6;cursor:not-allowed;}
   .side{display:flex;flex-direction:column;gap:20px;}
@@ -183,7 +184,7 @@
         </div>
         <div class="consent-field">
           <input type="checkbox" id="c_consent">
-          <label for="c_consent">I agree to receive calls and texts, including by automated technology, from Forge Growth Partners about my inquiry. Msg &amp; data rates may apply. Reply STOP to opt out, HELP for help.</label>
+          <label for="c_consent">I agree to receive calls and text messages, including by automated technology, from Forge Growth Partners about my inquiry, strategy call scheduling, and reminders. Message frequency varies. Msg &amp; data rates may apply. Reply STOP to opt out, HELP for help. Consent is not a condition of purchase. See our <a href="privacy-policy.html" target="_blank" rel="noopener">Privacy Policy</a> and <a href="terms-of-service.html" target="_blank" rel="noopener">Terms of Service</a>.</label>
         </div>
         <button type="submit" class="btn-primary" id="submitBtn">Send Message →</button>
       </form>
