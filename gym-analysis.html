@@ -37,6 +37,7 @@
   .field input, .field select, .field textarea{width:100%;background:var(--navy-deep);border:1px solid var(--border);border-radius:10px;padding:13px 14px;color:var(--white);font-size:14px;font-family:inherit;}
   .consent-field{display:flex;gap:10px;align-items:flex-start;margin-bottom:18px;font-size:12.5px;color:var(--slate);line-height:1.4;}
   .consent-field input{margin-top:3px;accent-color:var(--cyan);flex-shrink:0;width:15px;height:15px;}
+  .consent-field a{color:var(--cyan);text-decoration:underline;}
 
   .choice-group{margin-bottom:22px;}
   .choice-group > label{display:block;font-size:14px;font-weight:700;margin-bottom:10px;}
@@ -235,7 +236,7 @@
       <div class="field"><label>Anything specific you want us to focus on? (optional)</label><textarea id="q_notes" placeholder="e.g. We're trying to grow our kids program and reduce admin time..."></textarea></div>
       <div class="consent-field">
         <input type="checkbox" id="q_consent">
-        <label for="q_consent">I agree to receive calls and texts, including by automated technology, from Forge Growth Partners about my inquiry. Msg &amp; data rates may apply. Reply STOP to opt out, HELP for help.</label>
+        <label for="q_consent">I agree to receive calls and text messages, including by automated technology, from Forge Growth Partners about my inquiry, strategy call scheduling, and reminders. Message frequency varies. Msg &amp; data rates may apply. Reply STOP to opt out, HELP for help. Consent is not a condition of purchase. See our <a href="privacy-policy.html" target="_blank" rel="noopener">Privacy Policy</a> and <a href="terms-of-service.html" target="_blank" rel="noopener">Terms of Service</a>.</label>
       </div>
       <div class="btn-row"><button class="btn-back" onclick="prevStep(5)">← Back</button><button class="btn-primary" onclick="startAnalysis()">Generate My AI Gym Health Score™ →</button></div>
     </div>
