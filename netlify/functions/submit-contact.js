@@ -54,6 +54,7 @@ exports.handler = async (event) => {
         source: 'website',
         source_detail: 'contact_form',
         lead_type: 'gym_owner',
+        status: 'prospect', // inbound hand-raise; not the legacy 'new' gym-member status
         full_name: name || null,
         email,
         phone: phone || null,
