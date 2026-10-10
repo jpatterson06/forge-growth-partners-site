@@ -189,8 +189,9 @@
         <button type="submit" class="btn-primary" id="submitBtn">Send Message →</button>
       </form>
       <div class="thanks" id="contactThanks" style="display:none;text-align:center;padding:20px 0;">
-        <h2 style="font-size:20px;margin-bottom:8px;">You're on the waitlist.</h2>
-        <p style="color:var(--slate);font-size:14px;margin-bottom:14px;">We take on a limited number of new gym partners at a time so onboarding doesn't get rushed. We review every submission personally and reach out directly as space opens up.</p>
+        <h2 id="thanksHeading" style="font-size:20px;margin-bottom:8px;">You're on the waitlist.</h2>
+        <p id="thanksBody" style="color:var(--slate);font-size:14px;margin-bottom:14px;">We take on a limited number of new gym partners at a time so onboarding doesn't get rushed. We review every submission personally and reach out directly as space opens up.</p>
+        <div id="thanksBookingCta"></div>
       </div>
     </div>
 
@@ -221,6 +222,19 @@
   </footer>
 </div>
 <script>
+  var forgeBookingLink = null;
+  fetch('/.netlify/functions/get-booking-link').then(function(r){ return r.json(); }).then(function(d){
+    forgeBookingLink = (d && d.url) || null;
+  }).catch(function(){ forgeBookingLink = null; });
+
+  function renderThanksState(){
+    if(forgeBookingLink){
+      document.getElementById('thanksHeading').textContent = "You're confirmed.";
+      document.getElementById('thanksBody').textContent = "Thanks — we've got your info. Grab a time below for your free strategy call.";
+      document.getElementById('thanksBookingCta').innerHTML = '<a class="link-btn" target="_blank" rel="noopener" href="' + forgeBookingLink + '">Book Your Free Strategy Call →</a>';
+    }
+  }
+
   document.querySelectorAll('#crmChecks input[type=checkbox]').forEach(function (box) {
     box.addEventListener('change', function () {
       box.closest('.check-pill').classList.toggle('checked', box.checked);
@@ -275,6 +289,7 @@
       if(!res.ok) throw new Error('Request failed');
       document.getElementById('contactForm').style.display = 'none';
       document.getElementById('contactThanks').style.display = 'block';
+      renderThanksState();
     }).catch(function(err){
       console.error('Contact submit failed:', err);
       btn.disabled = false;
