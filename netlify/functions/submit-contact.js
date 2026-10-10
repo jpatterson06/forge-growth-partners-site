@@ -6,6 +6,28 @@
 
 const { createClient } = require('@supabase/supabase-js');
 
+// Best-effort SMS alert to the owner via the Command Center's
+// notify-new-lead function. Never throws — a notification failure must
+// never fail or slow down a lead submission. 3s timeout so a slow/down
+// notify endpoint can't hang this function either.
+async function notifyNewLead(fields) {
+  const secret = process.env.INTERNAL_NOTIFY_SECRET;
+  if (!secret) return; // not configured — silently skip
+  try {
+    const controller = new AbortController();
+    const timeout = setTimeout(() => controller.abort(), 3000);
+    await fetch('https://forge-command-center-jp.netlify.app/.netlify/functions/notify-new-lead', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', 'x-internal-secret': secret },
+      body: JSON.stringify(fields),
+      signal: controller.signal
+    });
+    clearTimeout(timeout);
+  } catch (err) {
+    console.error('notifyNewLead: failed (non-fatal)', err && err.message);
+  }
+}
+
 const SIZE_MEMBERS = { tiny: 15, small: 50, medium: 110, large: 200, xl: 300 };
 // Revenue buckets stored as a representative midpoint (numeric column) so the
 // sales dashboard can sort/filter by it; the raw bucket label is kept in
@@ -122,6 +144,8 @@ exports.handler = async (event) => {
         raw: attribution
       });
     }
+
+    await notifyNewLead({ name, gym, phone, email, source: 'contact_form' });
 
     return {
       statusCode: 200,
